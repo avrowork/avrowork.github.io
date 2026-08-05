@@ -40,6 +40,178 @@ function updateItemsHighlight(items, activeIdx) {
   items.forEach((item, i) => item.classList.toggle('highlighted', i === activeIdx));
 }
 
+/* ---- Cyberpunk accents: Matrix Rain + Typing Hero ---- */
+
+/* Matrix Rain — subtle falling-character canvas.
+   Only active on dark / terminal themes and when the user has not requested reduced motion.
+   Other themes: the canvas stays in the DOM (so the layer is ready) and is cleared. */
+function initMatrixRain() {
+  const canvas = document.getElementById('matrix-rain');
+  if (!canvas || !canvas.getContext) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ01$<>=/+*░▒▓';
+  const FONT_PX = 14;
+  const COL_W = FONT_PX;
+  const FADE = 'rgba(0, 0, 0, 0.06)';
+  const TICK_MS = 60;
+  const ACTIVE_THEMES = new Set(['dark', 'terminal']);
+  const STORAGE_KEY = 'theme';
+
+  let cols = 0;
+  let drops = [];
+  let intervalId = null;
+  let dpr = Math.max(1, window.devicePixelRatio || 1);
+
+  // Resolve the theme authoritatively: prefer localStorage (matches initTheme),
+  // otherwise the live <html data-theme> attribute, otherwise 'light'.
+  function currentTheme() {
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr) return attr;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return saved;
+    } catch (_) { /* localStorage may throw in private mode */ }
+    return 'light';
+  }
+  const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function isActive() {
+    return !reducedMQ.matches && ACTIVE_THEMES.has(currentTheme());
+  }
+  function resize() {
+    dpr = Math.max(1, window.devicePixelRatio || 1);
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    // Draw in CSS pixels — apply device-pixel scaling to the context once.
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.max(1, Math.floor(w / COL_W));
+    drops = Array.from({ length: cols }, () => Math.random() * (h / FONT_PX));
+  }
+  function step() {
+    if (!isActive()) { stop(); return; }
+    const w = canvas.width / dpr;
+    const h = canvas.height / dpr;
+    ctx.fillStyle = FADE;
+    ctx.fillRect(0, 0, w, h);
+    const theme = currentTheme();
+    // Slightly different palette per theme for personality.
+    ctx.fillStyle = theme === 'terminal' ? 'rgba(0, 255, 65, 0.55)' : 'rgba(0, 255, 200, 0.45)';
+    ctx.font = FONT_PX + "px 'IBM Plex Mono', ui-monospace, monospace";
+    for (let i = 0; i < cols; i++) {
+      const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
+      const y = drops[i] * FONT_PX;
+      ctx.fillText(ch, i * COL_W, y);
+      if (y > h && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  function start() {
+    if (intervalId) return;
+    resize();
+    intervalId = setInterval(step, TICK_MS);
+  }
+  function stop() {
+    if (!intervalId) return;
+    clearInterval(intervalId);
+    intervalId = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  window.addEventListener('resize', () => {
+    if (!isActive()) return;
+    resize();
+  });
+
+  // React to theme changes and to live reduced-motion preference changes.
+  new MutationObserver(() => {
+    if (isActive()) start(); else stop();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  if (reducedMQ.addEventListener) {
+    reducedMQ.addEventListener('change', () => {
+      if (isActive()) start(); else stop();
+    });
+  } else if (reducedMQ.addListener) { // Safari < 14 fallback
+    reducedMQ.addListener(() => {
+      if (isActive()) start(); else stop();
+    });
+  }
+
+  if (isActive()) start();
+}
+
+/* Typing Hero — cycles through phrases inside an element with [data-typed].
+   Renders a blinking caret via CSS (.typed-caret::after). */
+function initTypedHero() {
+  const el = document.querySelector('[data-typed-hero]');
+  if (!el) return;
+  const raw = el.getAttribute('data-typed');
+  if (!raw) return;
+  const phrases = raw.split('|').map((s) => s.trim()).filter(Boolean);
+  if (phrases.length === 0) return;
+  el.classList.add('typed-caret');
+
+  const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null;
+  let i = 0;       // phrase index
+  let j = 0;       // char index
+  let deleting = false;
+  const TYPE_MS = 70;
+  const DELETE_MS = 32;
+  const HOLD_MS = 1400;
+  const BETWEEN_MS = 320;
+
+  function showStatic() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    deleting = false;
+    el.textContent = phrases[0];
+    el.classList.remove('typed-caret');
+  }
+  function tick() {
+    const word = phrases[i];
+    if (!deleting) {
+      j++;
+      el.textContent = word.slice(0, j);
+      if (j === word.length) {
+        deleting = true;
+        timer = setTimeout(tick, HOLD_MS);
+        return;
+      }
+      timer = setTimeout(tick, TYPE_MS + Math.random() * 60);
+    } else {
+      j--;
+      el.textContent = word.slice(0, j);
+      if (j === 0) {
+        deleting = false;
+        i = (i + 1) % phrases.length;
+        timer = setTimeout(tick, BETWEEN_MS);
+        return;
+      }
+      timer = setTimeout(tick, DELETE_MS);
+    }
+  }
+  function startTyping() {
+    if (timer) return;
+    el.classList.add('typed-caret');
+    // Slight delay so initial paint includes the static title first.
+    timer = setTimeout(tick, 400);
+  }
+
+  if (reducedMQ.matches) showStatic();
+  else startTyping();
+
+  // React to live reduced-motion changes.
+  const onReducedChange = () => {
+    if (reducedMQ.matches) showStatic();
+    else startTyping();
+  };
+  if (reducedMQ.addEventListener) reducedMQ.addEventListener('change', onReducedChange);
+  else if (reducedMQ.addListener) reducedMQ.addListener(onReducedChange);
+}
+
 /* ---- Theme Switcher ---- */
 function initTheme() {
   const btn = document.getElementById('themeToggle');
@@ -797,6 +969,8 @@ document.addEventListener('keydown', (e) => {
 
 /* ---- Initialize all on DOM ready ---- */
 document.addEventListener('DOMContentLoaded', () => {
+  initMatrixRain();
+  initTypedHero();
   initTheme();
   initTabs();
   initAccordion();

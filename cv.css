@@ -138,11 +138,28 @@ img,svg,video{display:block;max-width:100%}
 .cv-header-name{font-size:1rem;font-weight:300;text-transform:uppercase}
 .cv-header-actions{display:flex;align-items:center;gap:.75rem}
 .cv-header-name-short{display:none}
-.cv-sidebar{position:fixed;top:53px;left:0;bottom:0;width:220px;border-right:1px solid var(--border);background:var(--background);padding:1.5rem 1rem;overflow-y:auto;z-index:40}
-.cv-sidebar h3{font-size:.7rem;font-weight:600;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
-.cv-sidebar a{display:block;padding:.375rem .75rem;border-radius:var(--radius);font-size:.8rem;color:var(--muted-foreground);transition:all 150ms;border-left:2px solid transparent}
-.cv-sidebar a:hover{background:var(--accent);color:var(--accent-foreground)}
-.cv-sidebar a.active{background:var(--accent);color:var(--foreground);border-left-color:var(--primary);font-weight:500}
+/* ---- Sidebar (desktop) === brand block + icon nav + scroll progress ---- */
+.cv-sidebar{position:fixed;top:53px;left:0;bottom:0;width:240px;border-right:1px solid var(--border);background:var(--background);padding:0;overflow-y:auto;overflow-x:hidden;z-index:40;display:flex;flex-direction:column}
+.cv-sidebar-brand{display:flex;align-items:center;gap:.75rem;padding:1.25rem 1rem 1.25rem;border-bottom:1px solid var(--border);flex-shrink:0}
+.cv-sidebar-avatar{width:2.5rem!important;height:2.5rem!important;font-size:.7rem!important;font-weight:700!important;flex-shrink:0;letter-spacing:0}
+.cv-sidebar-id{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.cv-sidebar-id strong{font-size:.85rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-sidebar-id span{font-size:.7rem;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-sidebar-nav{padding:.75rem .5rem;flex:1;min-height:0}
+.cv-sidebar-label{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted-foreground);padding:.25rem .75rem .5rem;margin:0;display:flex;align-items:center;gap:.5rem}
+.cv-sidebar-label::after{content:"";flex:1;height:1px;background:var(--border);opacity:.5}
+.cv-sidebar-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.125rem}
+.cv-sidebar-list a{display:flex;align-items:center;gap:.625rem;padding:.5rem .75rem;border-radius:var(--radius);font-size:.85rem;color:var(--muted-foreground);transition:color 150ms,background 150ms;border-left:2px solid transparent;font-weight:400}
+.cv-sidebar-list a svg{width:14px;height:14px;flex-shrink:0;color:var(--muted-foreground);transition:color 150ms}
+.cv-sidebar-list a span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cv-sidebar-list a:hover{color:var(--foreground);background:var(--accent)}
+.cv-sidebar-list a:hover svg{color:var(--primary)}
+.cv-sidebar-list a.active{background:var(--accent);color:var(--foreground);border-left-color:var(--primary);font-weight:600}
+.cv-sidebar-list a.active svg{color:var(--primary)}
+.cv-sidebar-progress{padding:.75rem 1rem 1rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:.625rem;flex-shrink:0;background:var(--background);position:sticky;bottom:0}
+.cv-sidebar-progress-num{font-size:.7rem;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums;min-width:2.5rem;letter-spacing:.02em}
+.cv-sidebar-progress-track{flex:1;height:3px;background:var(--border);overflow:hidden;position:relative;border-radius:999px}
+.cv-sidebar-progress-fill{display:block;height:100%;width:0;background:var(--primary);transition:width 80ms linear;border-radius:999px}
 .cv-section-icon svg,.cv-contact-icon svg{width:1.25rem;height:1.25rem;display:block}
 #themeToggle svg{display:block;width:16px;height:16px}
 .cv-main{margin-left:220px}
@@ -211,9 +228,12 @@ img,svg,video{display:block;max-width:100%}
 .cv-header{flex-wrap:wrap;gap:.5rem;row-gap:0}
 .cv-mobile-nav{display:flex;gap:.25rem;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;width:100%;padding:.5rem 0;margin:0;border-top:1px solid var(--border);background:var(--background);scrollbar-width:none}
 .cv-mobile-nav::-webkit-scrollbar{display:none}
-.cv-mobile-nav a{flex-shrink:0;display:inline-flex;align-items:center;padding:.5rem .875rem;font-size:.8rem;color:var(--muted-foreground);border-radius:var(--radius);border:1px solid transparent;white-space:nowrap;min-height:2.75rem}
+.cv-mobile-nav a{flex-shrink:0;display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .875rem;font-size:.8rem;color:var(--muted-foreground);border-radius:var(--radius);border:1px solid transparent;white-space:nowrap;min-height:2.75rem;transition:color 150ms,background 150ms,border-color 150ms}
 .cv-mobile-nav a:hover{background:var(--accent);color:var(--accent-foreground)}
-.cv-mobile-nav a.active{background:var(--accent);color:var(--foreground);border-color:var(--border)}
+.cv-mobile-nav a.active{background:var(--accent);color:var(--foreground);border-color:var(--border);font-weight:600}
+.cv-mobile-nav a.active::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0}
+/* Edge fades so users know the nav is scrollable on small screens */
+.cv-mobile-nav{position:relative;mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%)}
 .cv-hero-role{font-size:1rem;line-height:1.5}
 .cv-hero-name{font-size:1.6rem}
 @media(max-width:360px){

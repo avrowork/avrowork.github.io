@@ -161,10 +161,37 @@ function initScrollSpy() {
   targets.forEach(function (t) { observer.observe(t); });
 }
 
+/* === Scroll progress indicator (sidebar bottom) === */
+function initScrollProgress() {
+  const num = document.getElementById('cv-progress-pct');
+  const fill = document.getElementById('cv-progress-fill');
+  if (!num || !fill) return;
+  let pending = false;
+  function recompute() {
+    pending = false;
+    const doc = document.documentElement;
+    const max = (doc.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+    const r = Math.round(pct);
+    num.textContent = r + '%';
+    fill.style.width = r + '%';
+  }
+  function onScroll() {
+    if (!pending) {
+      pending = true;
+      requestAnimationFrame(recompute);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  recompute();
+}
+
 /* === Boot === */
 document.addEventListener('DOMContentLoaded', function () {
   initMatrixRain();
   initTypedHero();
   initTheme();
   initScrollSpy();
+  initScrollProgress();
 });

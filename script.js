@@ -238,6 +238,13 @@ function initTheme() {
     }
     btn.innerHTML = icons[t] || icons.light;
     btn.setAttribute('aria-label', `Switch to ${nextThemeName[t] || 'light'} theme`);
+
+    // Sync <meta name="theme-color"> for the mobile address bar / PWA UI.
+    // Update ALL theme-color metas (HTML has one filtered by prefers-color-scheme
+    // for no-JS users; we override both so dark-mode-OS users get the chosen theme too).
+    const themeColors = { light: '#ffffff', dark: '#09090b', brutalist: '#fffff0', terminal: '#0c0c0c' };
+    const color = themeColors[t] || themeColors.light;
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', color));
   }
 
   setTheme(initial);
@@ -924,7 +931,9 @@ function initMenubar() {
 
 /* ---- ScrollSpy for sidebar ---- */
 function initScrollSpy() {
-  const links = document.querySelectorAll('.demo-sidebar a[href^="#"], .cv-sidebar a[href^="#"]');
+  const links = document.querySelectorAll(
+    '.demo-sidebar a[href^="#"], .cv-sidebar a[href^="#"], .cv-mobile-nav a[href^="#"]'
+  );
   if (!links.length) return;
 
   const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);

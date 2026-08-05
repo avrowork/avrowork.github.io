@@ -272,9 +272,9 @@ body.drawer-open{overflow:hidden}
    ===================================================== */
 
 /* NOTE: `.cv-hero-status` / `.cv-hero-status-dot` removed.
-   `@keyframes cv-hero-pulse` is still used below by `.cv-project-status-live::before`,
+   `@keyframes cv-status-pulse` is still used below by `.cv-project-status-live::before`,
    so it stays. */
-@keyframes cv-hero-pulse {
+@keyframes cv-status-pulse {
   0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
   70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
   100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
@@ -537,7 +537,7 @@ body.drawer-open{overflow:hidden}
   height: 6px;
   border-radius: 50%;
   background: #22c55e;
-  animation: cv-hero-pulse 1.8s ease-out infinite;
+  animation: cv-status-pulse 1.8s ease-out infinite;
 }
 
 /* ---- Project body (with new headline / bullets) ---- */

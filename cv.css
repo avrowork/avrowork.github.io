@@ -488,6 +488,34 @@ body.drawer-open{overflow:hidden}
   opacity: 0.8;
 }
 
+/* ---- IA co-pilot note under skills intro ---- */
+.cv-skills-ia {
+  font-size: 0.82rem;
+  color: var(--muted-foreground);
+  max-width: 64ch;
+  margin-block: 1.25rem 1.5rem;
+  line-height: 1.7;
+}
+.cv-skill-ia-label {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  padding: 0.12rem 0.45rem;
+  border-radius: 0.35rem;
+}
+
+/* ---- subtle note inside each skills category ---- */
+.cv-skill-cat-note {
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+  margin: -0.25rem 0 0.6rem;
+  line-height: 1.5;
+}
+
 /* ---- Project head with role + year + status ---- */
 .cv-project-card { padding: 0; }
 .cv-project-head {

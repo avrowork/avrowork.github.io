@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -72,7 +71,6 @@
             "Python",
             "Node.js",
             "PostgreSQL",
-            "Docker",
             "Laravel",
             "SaaS Architecture",
             "WordPress",
@@ -102,80 +100,60 @@
 <!-- ===== CYBERPUNK ACCENTS: matrix rain background ===== -->
 <canvas id="matrix-rain" aria-hidden="true"></canvas>
 
-<!-- ===== HEADER ===== -->
-<header class="cv-header">
-    <span class="cv-header-name cv-header-name-full">Gary Avendaño Rosado</span>
-    <span class="cv-header-name cv-header-name-short" aria-hidden="true">AVRO</span>
-    <div class="cv-header-actions">
-        <button class="btn btn-outline btn-sm" id="themeToggle" aria-label="Cambiar tema">🌙</button>
-    </div>
-    <nav class="cv-mobile-nav" aria-label="Navegación móvil">
-        <a href="#hero">Inicio</a>
-        <a href="#about">Sobre mí</a>
-        <a href="#work">Trayectoria</a>
-        <a href="#skills">Habilidades</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#contact">Contacto</a>
+<!-- ===== TOPBAR NAV ===== -->
+<header class="cv-topbar">
+    <a href="#hero" class="cv-topbar-brand" aria-label="Gary Avendaño Rosado Â· Inicio">
+        <span class="cv-topbar-prompt" aria-hidden="true">&gt;</span><span class="cv-topbar-name">AVRO</span><span class="cv-topbar-cursor" aria-hidden="true">_</span>
+    </a>
+
+    <nav class="cv-topbar-nav" aria-label="Navegación principal">
+        <a href="#hero" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Inicio</a>
+        <a href="#about" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Sobre mÃ­</a>
+        <a href="#work" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Trayectoria</a>
+        <a href="#skills" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Habilidades</a>
+        <a href="#projects" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Proyectos</a>
+        <a href="#contact" class="cv-topbar-link"><span class="cv-topbar-slash" aria-hidden="true">//</span> Contacto</a>
     </nav>
+
+    <div class="cv-topbar-actions">
+        <span class="cv-topbar-status" title="Disponible para nuevos proyectos">
+            <span class="cv-topbar-status-dot" aria-hidden="true"></span>
+            Disponible
+        </span>
+        <button class="cv-topbar-theme" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+        <button class="cv-topbar-menu" id="cvMenuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="cvDrawer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+        </button>
+    </div>
+
+    <div class="cv-topbar-progress" aria-hidden="true"><span id="cv-progress-fill"></span></div>
 </header>
 
-<!-- ===== SIDEBAR ===== -->
-<aside class="cv-sidebar" aria-label="Navegación principal">
-    <div class="cv-sidebar-brand">
-        <div class="avatar cv-sidebar-avatar">AVRO</div>
-        <div class="cv-sidebar-id">
-            <strong>Gary A.</strong>
-            <span>Full-Stack · UI</span>
-        </div>
+<!-- ===== DRAWER (móvil) ===== -->
+<div class="cv-drawer" id="cvDrawer" data-open="false" role="dialog" aria-label="Navegación móvil">
+    <div class="cv-drawer-head">
+        <span class="cv-drawer-prompt" aria-hidden="true">&gt;</span>
+        <span class="cv-drawer-brand">AVRO</span>
+        <span class="cv-drawer-cursor" aria-hidden="true">_</span>
+        <span class="cv-drawer-status" title="Disponible">
+            <span class="cv-topbar-status-dot" aria-hidden="true"></span>
+            Disponible
+        </span>
     </div>
-
-    <nav class="cv-sidebar-nav">
-        <h3 class="cv-sidebar-label">Navegación</h3>
-        <ul class="cv-sidebar-list">
-            <li>
-                <a href="#hero" class="active">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.97L12 4l9 7.97"/><path d="M5 10v10a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1V10"/></svg>
-                    <span>Inicio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#about">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    <span>Sobre mí</span>
-                </a>
-            </li>
-            <li>
-                <a href="#work">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-                    <span>Trayectoria</span>
-                </a>
-            </li>
-            <li>
-                <a href="#skills">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
-                    <span>Habilidades</span>
-                </a>
-            </li>
-            <li>
-                <a href="#projects">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg>
-                    <span>Proyectos</span>
-                </a>
-            </li>
-            <li>
-                <a href="#contact">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
-                    <span>Contacto</span>
-                </a>
-            </li>
-        </ul>
+    <nav class="cv-drawer-nav" aria-label="Secciones del CV">
+        <a href="#hero" class="cv-drawer-link" data-num="01"><span class="cv-drawer-num">01</span><span class="cv-drawer-text">Inicio</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
+        <a href="#about" class="cv-drawer-link" data-num="02"><span class="cv-drawer-num">02</span><span class="cv-drawer-text">Sobre mÃ­</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
+        <a href="#work" class="cv-drawer-link" data-num="03"><span class="cv-drawer-num">03</span><span class="cv-drawer-text">Trayectoria</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
+        <a href="#skills" class="cv-drawer-link" data-num="04"><span class="cv-drawer-num">04</span><span class="cv-drawer-text">Habilidades</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
+        <a href="#projects" class="cv-drawer-link" data-num="05"><span class="cv-drawer-num">05</span><span class="cv-drawer-text">Proyectos</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
+        <a href="#contact" class="cv-drawer-link" data-num="06"><span class="cv-drawer-num">06</span><span class="cv-drawer-text">Contacto</span><span class="cv-drawer-arrow" aria-hidden="true">â</span></a>
     </nav>
-
-    <div class="cv-sidebar-progress" aria-label="Progreso de scroll">
-        <span class="cv-sidebar-progress-num" id="cv-progress-pct">0%</span>
-        <span class="cv-sidebar-progress-track" aria-hidden="true"><span class="cv-sidebar-progress-fill" id="cv-progress-fill"></span></span>
+    <div class="cv-drawer-foot">
+        <span class="cv-drawer-hint">tap fuera para cerrar Â· Esc</span>
     </div>
-</aside>
+</div>
+<!-- Backdrop for drawer focus + click-outside close -->
+<div class="cv-drawer-backdrop" id="cvDrawerBackdrop" aria-hidden="true"></div>
 
 <!-- ===== MAIN ===== -->
 <main class="cv-main">

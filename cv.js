@@ -1,6 +1,6 @@
 /* cv.js — CV-only interactivity (index.html)
    Self-contained bundle: theme cycling, matrix rain canvas,
-   typing hero, and scrollspy. */
+   typing hero, scrollspy, scroll progress, and drawer toggle. */
 
 /* === Theme switcher === */
 function initTheme() {
@@ -109,10 +109,8 @@ function initTypedHero() {
   const phrases = raw.split('|').map(function (s) { return s.trim(); }).filter(Boolean);
   if (phrases.length === 0) return;
   el.classList.add('typed-caret');
-
   const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
   let timer = null, i = 0, j = 0, deleting = false;
-
   function showStatic() {
     if (timer) { clearTimeout(timer); timer = null; }
     deleting = false;
@@ -140,9 +138,9 @@ function initTypedHero() {
   else if (reducedMQ.addListener) reducedMQ.addListener(onReduced);
 }
 
-/* === ScrollSpy (sidebar + mobile nav) === */
+/* === ScrollSpy (topbar + drawer) === */
 function initScrollSpy() {
-  const links = document.querySelectorAll('.cv-sidebar a[href^="#"], .cv-mobile-nav a[href^="#"]');
+  const links = document.querySelectorAll('.cv-topbar-link[href^="#"], .cv-drawer-link[href^="#"]');
   if (!links.length) return;
   const targetIds = Array.from(new Set(Array.from(links).map(function (a) { return a.getAttribute('href').slice(1); })));
   const targets = targetIds
@@ -154,18 +152,17 @@ function initScrollSpy() {
       if (!entry.isIntersecting) return;
       const id = entry.target.id;
       links.forEach(function (l) { l.classList.remove('active'); });
-      document.querySelectorAll('.cv-sidebar a[href="#' + id + '"], .cv-mobile-nav a[href="#' + id + '"]')
+      document.querySelectorAll('.cv-topbar-link[href="#' + id + '"], .cv-drawer-link[href="#' + id + '"]')
         .forEach(function (l) { l.classList.add('active'); });
     });
   }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.01 });
   targets.forEach(function (t) { observer.observe(t); });
 }
 
-/* === Scroll progress indicator (sidebar bottom) === */
+/* === Scroll progress indicator (topbar bottom edge) === */
 function initScrollProgress() {
-  const num = document.getElementById('cv-progress-pct');
   const fill = document.getElementById('cv-progress-fill');
-  if (!num || !fill) return;
+  if (!fill) return;
   let pending = false;
   function recompute() {
     pending = false;
@@ -173,18 +170,50 @@ function initScrollProgress() {
     const max = (doc.scrollHeight || document.body.scrollHeight) - window.innerHeight;
     const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
     const r = Math.round(pct);
-    num.textContent = r + '%';
     fill.style.width = r + '%';
   }
   function onScroll() {
-    if (!pending) {
-      pending = true;
-      requestAnimationFrame(recompute);
-    }
+    if (!pending) { pending = true; requestAnimationFrame(recompute); }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   recompute();
+}
+
+/* === Drawer toggle (mobile hamburger) === */
+function initDrawer() {
+  const toggle = document.getElementById('cvMenuToggle');
+  const drawer = document.getElementById('cvDrawer');
+  const backdrop = document.getElementById('cvDrawerBackdrop');
+  if (!toggle || !drawer || !backdrop) return;
+  let isOpen = false;
+  function setOpen(open) {
+    isOpen = open;
+    drawer.setAttribute('data-open', open ? 'true' : 'false');
+    backdrop.setAttribute('data-open', open ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('drawer-open', open);
+  }
+  toggle.addEventListener('click', function (e) { e.preventDefault(); setOpen(!isOpen); });
+  backdrop.addEventListener('click', function (e) { e.preventDefault(); setOpen(false); });
+  // Close on link click so the selected section is reached without manual dismiss
+  drawer.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  // Esc closes
+  document.addEventListener('keydown', function (e) {
+    if (isOpen && (e.key === 'Escape' || e.keyCode === 27)) {
+      e.preventDefault();
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  // Sync state if user resizes across the breakpoint (drawer belongs to mobile only)
+  const mq = window.matchMedia('(min-width: 769px)');
+  function syncOnResize() { if (mq.matches && isOpen) setOpen(false); }
+  if (mq.addEventListener) mq.addEventListener('change', syncOnResize);
+  else if (mq.addListener) mq.addListener(syncOnResize);
 }
 
 /* === Boot === */
@@ -194,4 +223,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initTheme();
   initScrollSpy();
   initScrollProgress();
+  initDrawer();
 });
+

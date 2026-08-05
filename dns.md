@@ -1,14 +1,12 @@
 # DNS — `avro.work`
 
 Configura los registros de abajo en tu proveedor DNS
-(Cloudflare, Namecheap, GoDaddy, Porkbun, Google Domains, Squarespace Domains, etc.)
+(Namecheap, GoDaddy, Porkbun, Squarespace Domains, Hostinger, Hover, etc.)
 para que `avro.work` resuelva al sitio publicado en GitHub Pages
 (el archivo `CNAME` con `avro.work` ya está commiteado en este repo).
 
 > El certificado HTTPS lo emite GitHub Pages automáticamente con Let's Encrypt
 > en cuanto detecta el dominio en `Settings → Pages`. Suele tardar 5–15 min.
-> Si Cloudflare está en medio, asegúrate de que los registros `A` estén en
-> modo **DNS only** (nube gris, no naranja) o el certificado no se emite.
 
 ---
 
@@ -39,8 +37,7 @@ GitHub Pages redirige automáticamente entre apex y `www` si ambos resuelven.
 
 ## 2. Formato zone file (BIND / RFC 1035)
 
-Para proveedores que aceptan import de zona (Cloudflare con
-`Importar zonefile`, Bind9, TinyDNS, instancias DNS custom):
+Para proveedores que aceptan import de zona (Bind9, TinyDNS, instancias DNS custom):
 
 ```bind
 $ORIGIN avro.work.
@@ -60,16 +57,6 @@ www     IN  CNAME   avrowork.github.io.
 ---
 
 ## 3. Por proveedor (UI paso a paso)
-
-### Cloudflare
-
-1. Selecciona `avro.work` → **DNS** → **Records**.
-2. Quita cualquier `A` o `CNAME` previo en apex y `www` que puedas tener.
-3. Añade los **4 registros A** con `Name=@`, valor = cada IP, TTL = Auto.
-   Asegúrate de que el toggle **Proxy** queda en **DNS only** (gris), no en *Proxied* (naranja). Si está en Proxied GitHub Pages no podrá emitir el certificado.
-4. Añade el `CNAME`: `Name=www`, `Target=avrowork.github.io`, Proxy = **DNS only**.
-5. **SSL/TLS** → Overview → modo **Full** (no *Full (strict)* hasta que veas el cert activo).
-6. Espera 1–5 min para SSL, hasta 48 h para DNS global si cambiaste de nameservers.
 
 ### Namecheap
 
@@ -155,7 +142,6 @@ la marca **"HTTPS available"** o similar.
 | `dig avro.work` no devuelve nada              | DNS aún no propaga                                   | Espera. TTL alto. Prueba con `dig @8.8.8.8 …`    |
 | `avro.work` carga pero sin HTTPS              | Cert aún no emitido                                  | Espera 30 min; revisa *Settings → Pages*         |
 | `www.avro.work` no carga                      | Falta CNAME o apex-only setup                        | Crea el CNAME o elige apex como primary          |
-| Cloudflare muestra 1016 / 521                 | Proxy enabled para los `A`                          | Pon **DNS only** en cada A-record                |
 | Bucle de redirect infinito                    | Apex y www circular                                  | Quita el redirect. Configura www → apex simple   |
 
 ---

@@ -1,8 +1,6 @@
 /* =====================================================
    cv.css — CV-only styles (index.html)
-   Extracted tree-shaken subset of style.css. Loaded by
-   index.html. examples/components.html continues to use
-   the full design system in style.css.
+   Tree-shaken, self-contained bundle for the public CV.
    ===================================================== */
 
 /* ---- Theme tokens ---- */

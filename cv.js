@@ -1,5 +1,6 @@
 /* cv.js — CV-only interactivity (index.html)
-   Loaded by index.html. examples/components.html keeps using the full script.js. */
+   Self-contained bundle: theme cycling, matrix rain canvas,
+   typing hero, and scrollspy. */
 
 /* === Theme switcher === */
 function initTheme() {

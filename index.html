@@ -259,7 +259,7 @@
             <article class="cv-method">
                 <span class="cv-method-num">01</span>
                 <h4>Spec first</h4>
-                <p>Antes de tocar código escribo el qué y el cómo: criterios de aceptación, contratos de API, casos borde. El PR cubre la spec, no al revés.</p>
+                <p>Antes de implementar, documento el qué y el cómo: criterios de aceptación, contratos de API y casos borde. El PR responde a la especificación, no al revés.</p>
             </article>
             <article class="cv-method">
                 <span class="cv-method-num">02</span>
@@ -269,7 +269,7 @@
             <article class="cv-method">
                 <span class="cv-method-num">03</span>
                 <h4>Entrega continua</h4>
-                <p>Deploy automatizado al merge de main. Migraciones idempotentes, feature flags donde hace falta, rollback claro cuando algo se rompe.</p>
+                <p>Despliegue automatizado al merge en main. Migraciones idempotentes, feature flags cuando la situación lo requiere, y rollback claro ante incidentes.</p>
             </article>
             <article class="cv-method">
                 <span class="cv-method-num">04</span>
@@ -296,13 +296,13 @@
                     <div class="cv-timeline-role">Desarrollador Full-Stack</div>
                     <div class="cv-timeline-company">Soluto Consulting Group · Guayaquil</div>
                     <p class="cv-timeline-desc">
-                        Pilar técnico del equipo en proyectos SaaS para clientes principalmente en Norteamérica. Diseño y construyo el producto completo: arquitectura, backend, frontend y operación.
+                        Profesional técnico de referencia dentro del equipo en proyectos SaaS, principalmente para clientes en Norteamérica. Diseño e implemento el producto de extremo a extremo: arquitectura, backend, frontend y operación.
                     </p>
                     <ul class="cv-achievements">
-                        <li>Desarrollé más de <strong>12 sistemas web</strong> de alto rendimiento, tomando decisiones de arquitectura y stack con criterio propio.</li>
-                        <li>Lideré la construcción de <strong>2 productos SaaS multi-tenant</strong> (clínicas odontológicas y lubricadoras) hoy en producción con clientes activos y facturación integrada.</li>
-                        <li>Establecí el patrón de trabajo <strong>spec-driven + tests E2E con Playwright</strong> que el equipo adoptó como estándar.</li>
-                        <li>Diseñé y mantuve un <strong>design system propio</strong> en CSS variables con 4 temas (light, dark, brutalist, terminal), accesible y motion-friendly.</li>
+                        <li>Desarrollé más de <strong>12 sistemas web</strong> de alto rendimiento, tomando decisiones de arquitectura y stack con criterio autónomo.</li>
+                        <li>Lideré la construcción de <strong>2 productos SaaS multi-tenant</strong> (clínicas odontológicas y lubricadoras), actualmente en producción con clientes activos y facturación integrada.</li>
+                        <li>Establecí como estándar para el equipo el patrón de trabajo <strong>spec-driven con cobertura E2E mediante Playwright</strong>.</li>
+                        <li>Diseñé y mantuve un <strong>design system propio</strong> basado en variables CSS con 4 temas (light, dark, brutalist, terminal), accesible y con soporte para animaciones.</li>
                     </ul>
                     <div class="cv-timeline-stack">
                         <span class="cv-stack-label">Stack principal</span>
@@ -327,12 +327,12 @@
                     <div class="cv-timeline-role">Diseñador Web</div>
                     <div class="cv-timeline-company">Servicios Informáticos · Guayaquil</div>
                     <p class="cv-timeline-desc">
-                        Diseño y desarrollo de sitios web para empresas canadienses y estadounidenses. Base formativa en interfaces, branding y maquetación HTML/CSS antes de saltar a backend.
+                        Diseño y desarrollo de sitios web para empresas canadienses y estadounidenses. Senté aquí la base formativa en interfaces, branding y maquetación HTML/CSS, antes de mi transición hacia desarrollo backend.
                     </p>
                     <ul class="cv-achievements">
-                        <li>4 proyectos de branding + sitio web entregados a clientes en <strong>Canadá y EE.UU.</strong>, con workflow remoto desde Guayaquil.</li>
-                        <li>Diseñé logos, kits de marca y assets visuales para impresión y digital.</li>
-                        <li>Construí los sitios con HTML / CSS / JS a medida, sin frameworks propietarios.</li>
+                        <li>4 proyectos de branding + sitio web entregados a clientes en <strong>Canadá y Estados Unidos</strong>, gestionados de forma remota desde Guayaquil.</li>
+                        <li>Diseñé logos, kits de marca y piezas visuales para impresión y digital.</li>
+                        <li>Construí los sitios con HTML, CSS y JavaScript a medida, sin frameworks de terceros.</li>
                     </ul>
                     <div class="cv-timeline-stack">
                         <span class="cv-stack-label">Stack principal</span>
@@ -446,11 +446,11 @@
                     <span class="cv-project-status cv-project-status-live">En producción</span>
                 </div>
                 <h3 class="cv-project-name">OdontoGest</h3>
-                <p class="cv-project-desc">Plataforma SaaS multi-tenant para clínicas odontológicas: agendas, historiales clínicos, facturación integrada y panel independiente por clínica con roles diferenciados.</p>
+                <p class="cv-project-desc">Plataforma SaaS multi-tenant para clínicas odontológicas, con agendas, historiales clínicos, facturación integrada y panel independiente por clínica, con roles diferenciados por perfil de usuario.</p>
                 <ul class="cv-project-bullets">
-                    <li><strong>12+ clínicas</strong> activas pagando suscripción mensual.</li>
-                    <li>Roles diferenciados: recepcionista, odontólogo, admin; cada uno con su flujo.</li>
-                    <li>Facturación recurrente con Stripe; reportes mensuales por clínica.</li>
+                    <li>Más de <strong>12 clínicas</strong> activas con suscripción mensual al día.</li>
+                    <li>Roles diferenciados para recepcionista, odontólogo y administrador, cada uno con su flujo de trabajo parametrizado.</li>
+                    <li>Facturación recurrente mediante Stripe y emisión de reportes mensuales por clínica.</li>
                 </ul>
                 <div class="cv-project-footer">
                     <div class="cv-project-stack">
@@ -472,11 +472,11 @@
                     <span class="cv-project-status cv-project-status-live">En producción</span>
                 </div>
                 <h3 class="cv-project-name">HidroLube</h3>
-                <p class="cv-project-desc">Sistema administrativo para lubricadoras y lavadoras de vehículos. Inventarios por sucursal, control de servicios, facturación y gestión de clientes; multi-tenant.</p>
+                <p class="cv-project-desc">Sistema administrativo para lubricadoras y lavadoras de vehículos. Cubre inventarios por sucursal, control de servicios, facturación y gestión de clientes, bajo un modelo multi-tenant.</p>
                 <ul class="cv-project-bullets">
-                    <li>Arquitectura multi-sucursal con roles por <strong>gerente / operador</strong>.</li>
-                    <li>Inventario en tiempo real con alertas de stock mínimo.</li>
-                    <li>Reportes de margen por servicio y por sucursal.</li>
+                    <li>Arquitectura multi-sucursal, con roles diferenciados para <strong>gerente y operador</strong>.</li>
+                    <li>Inventario en tiempo real con alertas automáticas de stock mínimo.</li>
+                    <li>Generación de reportes de margen por servicio y por sucursal.</li>
                 </ul>
                 <div class="cv-project-footer">
                     <div class="cv-project-stack">
@@ -498,10 +498,10 @@
                     <span class="cv-project-status">Mantenimiento</span>
                 </div>
                 <h3 class="cv-project-name">Blog PIBG</h3>
-                <p class="cv-project-desc">Blog diario de la Primera Iglesia Bautista de Guayaquil (PIBG). Publicaciones devocionales, archivo histórico y panel editorial para el equipo de contenido.</p>
+                <p class="cv-project-desc">Blog diario de la Primera Iglesia Bautista de Guayaquil (PIBG), con publicaciones devocionales, archivo histórico y panel editorial para el equipo de contenido.</p>
                 <ul class="cv-project-bullets">
-                    <li>Diseño de plantilla personalizada sobre WordPress con espaciado legible y accesible.</li>
-                    <li>Workflow editorial: roles de redactor, editor, publicador.</li>
+                    <li>Diseño de plantilla personalizada sobre WordPress, optimizada para legibilidad y accesibilidad.</li>
+                    <li>Workflow editorial con roles definidos para redactor, editor y publicador.</li>
                     <li>Archivo navegable por fecha, autor y serie devocional.</li>
                 </ul>
                 <div class="cv-project-footer">

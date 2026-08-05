@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Gary Avendaño Rosado (avroec / avrodev) — Remote Full-Stack Developer &amp; UI Designer en Ecuador. 9+ años creando SaaS escalables. Disponible para contratación remota.">
+    <meta name="keywords" content="Gary Avendaño Rosado, avroec, avrodev, remote full-stack developer, desarrollador full-stack, UI designer, diseñador UI, Guayaquil, Ecuador, React, TypeScript, Node.js, Python, Docker, PostgreSQL, SaaS, nearshore developer, LATAM developer, freelance, portafolio, trabajo remoto">
+    <meta name="author" content="Gary Avendaño Rosado">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://avroec.github.io">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <title>Gary Avendaño Rosado (avroec / avrodev) | Remote Full-Stack Developer &amp; UI Designer — React, TypeScript, Python, Node.js</title>
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://avroec.github.io">
+    <meta property="og:title" content="Gary Avendaño Rosado (avroec / avrodev) | Remote Full-Stack Developer &amp; UI Designer">
+    <meta property="og:description" content="Gary Avendaño Rosado (avroec / avrodev) — Remote Full-Stack Developer &amp; UI Designer en Ecuador. 9+ años creando SaaS escalables. Disponible para contratación remota.">
+    <meta property="og:image" content="https://avroec.github.io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="AVRO — Gary Avendaño Rosado (avroec / avrodev), Remote Full-Stack Developer &amp; UI Designer">
+    <meta property="og:site_name" content="avroec / avrodev — Gary Avendaño Rosado">
+    <meta property="og:locale" content="es_EC">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://avroec.github.io">
+    <meta name="twitter:title" content="Gary Avendaño Rosado (avroec / avrodev) | Remote Full-Stack Developer &amp; UI Designer">
+    <meta name="twitter:description" content="Gary Avendaño Rosado (avroec / avrodev) — Remote Full-Stack Developer &amp; UI Designer en Ecuador. 9+ años creando SaaS escalables. Disponible para contratación remota.">
+    <meta name="twitter:image" content="https://avroec.github.io/og-image.png">
+    <meta name="twitter:image:alt" content="AVRO — Gary Avendaño Rosado (avroec / avrodev), Remote Full-Stack Developer &amp; UI Designer">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Gary Avendaño Rosado",
+          "alternateName": "avroec, avrodev",
+          "givenName": "Gary",
+          "familyName": "Avendaño Rosado",
+          "url": "https://avroec.github.io",
+          "jobTitle": "Remote Full-Stack Developer & UI Designer",
+          "image": "https://avroec.github.io/og-image.png",
+          "email": "avenros1@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Guayaquil",
+            "addressCountry": "EC"
+          },
+          "sameAs": [
+            "https://github.com/garyavendanio",
+            "https://linkedin.com/in/garyavendano",
+            "https://www.behance.net/garyavendanio",
+            "https://www.instagram.com/garyavendano"
+          ],
+          "knowsAbout": [
+            "Desarrollo Full-Stack",
+            "Remote Full-Stack Development",
+            "Diseño UI",
+            "TypeScript",
+            "React",
+            "Python",
+            "Node.js",
+            "PostgreSQL",
+            "Docker",
+            "Laravel",
+            "SaaS Architecture",
+            "WordPress",
+            "CI/CD",
+            "Figma",
+            "REST APIs",
+            "GraphQL"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "avroec / avrodev — Gary Avendaño Rosado",
+          "url": "https://avroec.github.io",
+          "description": "Portafolio profesional de Gary Avendaño Rosado (avroec / avrodev). Remote Full-Stack Developer & UI Designer en Ecuador.",
+          "inLanguage": "es"
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== Layout ===== */
+        .cv-header {
+            position: sticky; top: 0; z-index: 45;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .cv-header-name { font-size: 1rem; font-weight: 300; text-transform: uppercase; }
+        .cv-header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+        .cv-sidebar {
+            position: fixed; top: 53px; left: 0; bottom: 0;
+            width: 220px;
+            border-right: 1px solid var(--border);
+            background: var(--background);
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+            z-index: 40;
+        }
+        .cv-sidebar h3 { font-size: 0.7rem; font-weight: 600; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .cv-sidebar a {
+            display: block;
+            padding: 0.375rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            color: var(--muted-foreground);
+            transition: all 150ms;
+            border-left: 2px solid transparent;
+        }
+        .cv-sidebar a:hover { background: var(--accent); color: var(--accent-foreground); }
+        .cv-sidebar a.active { background: var(--accent); color: var(--foreground); border-left-color: var(--primary); font-weight: 500; }
+
+        .cv-section-icon svg, .cv-contact-icon svg { width: 1.25rem; height: 1.25rem; display: block; }
+        #themeToggle svg { display: block; width: 16px; height: 16px; }
+
+        .cv-main { margin-left: 220px; }
+
+        /* ===== Hero ===== */
+        .cv-hero {
+            padding: 5rem 3rem 3rem;
+            display: flex; align-items: center; gap: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .cv-hero-left { flex-shrink: 0; }
+        .cv-hero-right { flex: 1; }
+        .cv-hero-name { font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: -0.02em; text-transform: uppercase; }
+        .cv-hero-role { font-size: 1.1rem; font-weight: 300; color: var(--muted-foreground); margin-bottom: 1rem; }
+        .cv-hero-location { font-size: 0.85rem; color: var(--muted-foreground); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .cv-hero-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+        /* ===== Section ===== */
+        .cv-section {
+            padding: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .cv-section:last-child { border-bottom: none; }
+        .cv-section-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
+        .cv-section-icon { font-size: 1.25rem; }
+        .cv-section-title { font-size: 1.25rem; font-weight: 700; }
+
+        /* ===== About ===== */
+        .cv-about-text { font-size: 0.95rem; line-height: 1.75; color: var(--muted-foreground); max-width: 640px; }
+
+        /* ===== Experience Timeline ===== */
+        .cv-timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+        .cv-timeline-item {
+            display: flex; gap: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: background 150ms, border-color 150ms;
+        }
+        .cv-timeline-item:hover { border-color: var(--ring); }
+        .cv-timeline-date {
+            flex-shrink: 0; width: 120px;
+            font-size: 0.75rem; color: var(--muted-foreground);
+            padding-top: 0.125rem;
+        }
+        .cv-timeline-body { flex: 1; }
+        .cv-timeline-role { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .cv-timeline-company { font-size: 0.85rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .cv-timeline-desc { font-size: 0.85rem; color: var(--muted-foreground); line-height: 1.6; }
+        .cv-timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
+
+        /* ===== Skills ===== */
+        .cv-skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+        .cv-skill-group { display: flex; flex-direction: column; gap: 0.75rem; }
+        .cv-skill-label { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 500; }
+        .cv-skill-pct { color: var(--muted-foreground); }
+
+        /* ===== Projects ===== */
+        .cv-projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+        .cv-project-card {
+            display: flex; flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 150ms, box-shadow 150ms;
+        }
+        .cv-project-card:hover { border-color: var(--ring); box-shadow: var(--shadow-md); }
+        .cv-project-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+        .cv-project-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .cv-project-desc { font-size: 0.825rem; color: var(--muted-foreground); line-height: 1.55; flex: 1; margin-bottom: 0.75rem; }
+        .cv-project-footer { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+
+        /* ===== Contact ===== */
+        .cv-contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .cv-contact-item { display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.85rem; transition: border-color 150ms; }
+        .cv-contact-item:hover { border-color: var(--ring); }
+        .cv-contact-icon { font-size: 1.25rem; }
+
+        /* ===== Footer ===== */
+        .cv-footer { padding: 2rem 3rem; text-align: center; font-size: 0.75rem; color: var(--muted-foreground); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .cv-sidebar { display: none; }
+            .cv-main { margin-left: 0; }
+            .cv-hero { flex-direction: column; padding: 3rem 1.5rem 2rem; gap: 1.5rem; text-align: center; }
+            .cv-hero-links { justify-content: center; }
+            .cv-section { padding: 2rem 1.5rem; }
+            .cv-timeline-item { flex-direction: column; gap: 0.5rem; }
+            .cv-timeline-date { width: auto; }
+            .cv-projects-grid { grid-template-columns: 1fr; }
+            .cv-skills-grid { grid-template-columns: 1fr; }
+            .cv-contact-grid { grid-template-columns: 1fr; }
+            .cv-footer { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="cv-header">
+    <span class="cv-header-name">Gary Avendaño Rosado · avroec · avrodev</span>
+    <div class="cv-header-actions">
+        <button class="btn btn-outline btn-sm" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+    </div>
+</header>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="cv-sidebar">
+    <h3>Navegación</h3>
+    <a href="#hero" class="active">Inicio</a>
+    <a href="#about">Sobre mí</a>
+    <a href="#experience">Experiencia</a>
+    <a href="#skills">Habilidades</a>
+    <a href="#projects">Proyectos</a>
+    <a href="#contact">Contacto</a>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<main class="cv-main">
+
+    <!-- ===== HERO ===== -->
+    <section class="cv-hero" id="hero">
+        <div class="cv-hero-left">
+            <div class="avatar avatar-lg" style="width:8rem;height:8rem;font-size:2.5rem;">AVRO</div>
+        </div>
+        <div class="cv-hero-right">
+            <h1 class="cv-hero-name">Gary Avendaño Rosado</h1>
+            <p class="cv-hero-role">Remote Full-Stack Developer &amp; UI Designer <span style="color:var(--primary);">@avroec</span> · <span style="color:var(--primary);">@avrodev</span></p>
+            <p class="cv-hero-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+                Guayaquil, Ecuador · Remoto · Disponible para contratación
+            </p>
+            <div class="cv-hero-links">
+                <a href="https://github.com/garyavendanio" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/garyavendano" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:avenros1@gmail.com" class="btn btn-outline btn-sm">Correo</a>
+                <a href="https://www.behance.net/garyavendanio" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Behance</a>
+                <a href="#contact" class="btn btn-sm">Contáctame →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="cv-section" id="about">
+        <div class="cv-section-header">
+            <span class="cv-section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <h2 class="cv-section-title">Sobre mí</h2>
+        </div>
+        <p class="cv-about-text">
+            Soy <strong>Gary Avendaño Rosado</strong> (<strong>avroec</strong> / <strong>avrodev</strong>), <strong>Remote Full-Stack Developer &amp; UI Designer</strong> con más de 9 años de experiencia creando sistemas web SaaS, herramientas para desarrolladores y plataformas colaborativas. 
+            He trabajado en proyectos para clientes en <strong>Canadá y Estados Unidos</strong>, combinando desarrollo frontend con interfaces de alta precisión y backends robustos que escalan. 
+            Me especializo en los ecosistemas <strong>Python, TypeScript, React, Node.js y Bun</strong> — con un interés creciente en Go y programación de sistemas. 
+            Disponible para <strong>trabajo remoto</strong> desde Guayaquil, Ecuador (zona horaria EST/GMT-5).
+        </p>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="cv-section" id="experience">
+        <div class="cv-section-header">
+            <span class="cv-section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span>
+            <h2 class="cv-section-title">Experiencia</h2>
+        </div>
+        <div class="cv-timeline">
+
+            <div class="cv-timeline-item">
+                <div class="cv-timeline-date">2019 — Presente</div>
+                <div class="cv-timeline-body">
+                    <div class="cv-timeline-role">Desarrollador Full-Stack</div>
+                    <div class="cv-timeline-company">Soluto Consulting Group</div>
+                    <p class="cv-timeline-desc">
+                        He desarrollado más de 12 sistemas web de alto rendimiento, demostrando gran versatilidad para ejecutar todas las tareas y requerimientos encomendados con excelencia. Mi enfoque combina la creación de interfaces intuitivas con arquitecturas backend robustas, garantizando soluciones escalables y eficientes.
+                    </p>
+                    <div class="cv-timeline-tags">
+                        <span class="badge badge-outline">React</span>
+                        <span class="badge badge-outline">Laravel</span>
+                        <span class="badge badge-outline">MySQL</span>
+                        <span class="badge badge-outline">CSS</span>
+                        <span class="badge badge-outline">cPanel</span>
+                        <span class="badge badge-outline">VPS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-timeline-item">
+                <div class="cv-timeline-date">2017 — 2019</div>
+                <div class="cv-timeline-body">
+                    <div class="cv-timeline-role">Diseñador Web</div>
+                    <div class="cv-timeline-company">Servicios Informáticos</div>
+                    <p class="cv-timeline-desc">
+                        Participé en 4 proyectos para empresas canadienses y estadounidenses, abarcando diseño y desarrollo web. 
+                        Trabajé en la creación de interfaces, branding y assets visuales para clientes internacionales.
+                    </p>
+                    <div class="cv-timeline-tags">
+                        <span class="badge badge-outline">Photoshop</span>
+                        <span class="badge badge-outline">Illustrator</span>
+                        <span class="badge badge-outline">Sketch</span>
+                        <span class="badge badge-outline">HTML</span>
+                        <span class="badge badge-outline">CSS</span>
+                        <span class="badge badge-outline">JS</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="cv-section" id="skills">
+        <div class="cv-section-header">
+            <span class="cv-section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></span>
+            <h2 class="cv-section-title">Habilidades técnicas con y sin AI</h2>
+        </div>
+        <div class="cv-skills-grid">
+
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>TypeScript / JavaScript</span><span class="cv-skill-pct">95%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:95%;" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>React / Next.js</span><span class="cv-skill-pct">90%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:90%;" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>Node.js / Express</span><span class="cv-skill-pct">85%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:85%;" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>CSS / Design Systems</span><span class="cv-skill-pct">92%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:92%;" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>PostgreSQL / MariaDB / MySQL</span><span class="cv-skill-pct">80%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:80%;" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>Python</span><span class="cv-skill-pct">83%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:83%;" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>AI / LLMs</span><span class="cv-skill-pct">78%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:78%;" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>Go (aprendiendo)</span><span class="cv-skill-pct">45%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:45%;" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+            <div class="cv-skill-group">
+                <div class="cv-skill-label"><span>Rust (aprendiendo)</span><span class="cv-skill-pct">24%</span></div>
+                <div class="progress"><div class="progress-bar" style="width:24%;" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"></div></div>
+            </div>
+
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;">
+            <span class="badge badge-outline">Git</span>
+            <span class="badge badge-outline">Docker</span>
+            <span class="badge badge-outline">Stripe</span>
+            <span class="badge badge-outline">PayPal</span>
+            <span class="badge badge-outline">CI/CD</span>
+            <span class="badge badge-outline">Spec-Driven</span>
+            <span class="badge badge-outline">GraphQL</span>
+            <span class="badge badge-outline">REST</span>
+            <span class="badge badge-outline">WebSockets</span>
+            <span class="badge badge-outline">Figma</span>
+            <span class="badge badge-outline">Photoshop</span>
+            <span class="badge badge-outline">Illustrator</span>
+            <span class="badge badge-outline">Sketch</span>
+            <span class="badge badge-outline">Digital Ocean</span>
+            <span class="badge badge-outline">Google Cloud</span>
+            <span class="badge badge-outline">NotebookLM</span>
+            <span class="badge badge-outline">Gemini</span>
+            <span class="badge badge-outline">Ollama</span>
+            <span class="badge badge-outline">LM Studio</span>
+            <span class="badge badge-outline">Llama.cpp</span>
+            <span class="badge badge-outline">OpenWebUI</span>
+            <span class="badge badge-outline">GSAP</span>
+            <span class="badge badge-outline">Three.js</span>
+            <span class="badge badge-outline">Playwright</span>
+            <span class="badge badge-outline">Linux</span>
+            <span class="badge badge-outline">VS Code</span>
+            <span class="badge badge-outline">Code-Server</span>
+            <span class="badge badge-outline">Python</span>
+            <span class="badge badge-outline">VPS</span>
+            <span class="badge badge-outline">cPanel</span>
+            <span class="badge badge-outline">VM / Modelos IA</span>
+            <span class="badge badge-outline">Prompt Engineering</span>
+            <span class="badge badge-outline">Claude Code</span>
+            <span class="badge badge-outline">Cursor</span>
+            <span class="badge badge-outline">RAG</span>
+            <span class="badge badge-outline">Django</span>
+            <span class="badge badge-outline">Flask</span>
+            <span class="badge badge-outline">FastAPI</span>
+            <span class="badge badge-outline">Pandas</span>
+            <span class="badge badge-outline">Bun</span>
+            <span class="badge badge-outline">PNPM</span>
+            <span class="badge badge-outline">Tailwind CSS</span>
+            <span class="badge badge-outline">Bootstrap</span>
+            <span class="badge badge-outline">Foundation</span>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="cv-section" id="projects">
+        <div class="cv-section-header">
+            <span class="cv-section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg></span>
+            <h2 class="cv-section-title">Proyectos</h2>
+        </div>
+        <div class="cv-projects-grid">
+
+            <div class="cv-project-card">
+                <div class="cv-project-body">
+                    <div class="cv-project-name">OdontoGest</div>
+                    <p class="cv-project-desc">
+                        Sistema administrativo para gestión de clínicas odontológicas con modelo de negocio tenant SaaS. 
+                        Permite gestionar múltiples clínicas de forma independiente con agendas, historiales clínicos y facturación.
+                    </p>
+                    <div class="cv-project-footer">
+                        <span style="display:flex;gap:0.5rem;">
+                            <span class="badge badge-outline">Bun</span>
+                            <span class="badge badge-outline">React</span>
+                        </span>
+                        <a href="https://odonto.inicio.top" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver OdontoGest →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-project-card">
+                <div class="cv-project-body">
+                    <div class="cv-project-name">HidroLube</div>
+                    <p class="cv-project-desc">
+                        Sistema administrativo para gestión de lubricadoras y lavadoras de vehículos con modelo de negocio tenant SaaS. 
+                        Permite administrar múltiples sucursales con control de inventarios, servicios, facturación y gestión de clientes.
+                    </p>
+                    <div class="cv-project-footer">
+                        <span style="display:flex;gap:0.5rem;">
+                            <span class="badge badge-outline">Laravel</span>
+                            <span class="badge badge-outline">Bun</span>
+                            <span class="badge badge-outline">React</span>
+                        </span>
+                        <a href="https://hidrolube.inicio.top/" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver HidroLube →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-project-card">
+                <div class="cv-project-body">
+                    <div class="cv-project-name">Blog PIBG</div>
+                    <p class="cv-project-desc">
+                        Blog de publicaciones diarias para la Primera Iglesia Bautista de Guayaquil (PIBG). 
+                        Sitio web desarrollado en WordPress con publicaciones, devocionales y contenido para la congregación.
+                    </p>
+                    <div class="cv-project-footer">
+                        <span class="badge badge-outline">WordPress</span>
+                        <a href="https://pibguayaquil.com" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver Blog PIBG →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="cv-section" id="contact">
+        <div class="cv-section-header">
+            <span class="cv-section-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></span>
+            <h2 class="cv-section-title">Contacto</h2>
+        </div>
+        <div class="cv-contact-grid">
+            <a href="mailto:avenros1@gmail.com" class="cv-contact-item" aria-label="Enviar correo a avenros1@gmail.com">
+                <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+                <span>avenros1@gmail.com</span>
+            </a>
+            <a href="https://github.com/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de GitHub de garyavendanio">
+                <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg></span>
+                <span>github.com/garyavendanio</span>
+            </a>
+            <a href="https://linkedin.com/in/garyavendano" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de LinkedIn de garyavendano">
+                <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+                <span>linkedin.com/in/garyavendano</span>
+            </a>
+            <a href="https://www.instagram.com/garyavendano" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de Instagram de garyavendano">
+                <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg></span>
+                <span>@garyavendano</span>
+            </a>
+            <a href="https://www.behance.net/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de Behance de garyavendanio">
+                <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.354V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.354"/><path d="M12 11H8v2h4a1 1 0 0 0 0-2z"/><path d="M12 9H8v2h4a1 1 0 0 0 0-2z"/><path d="M12 13H8v2h4a1 1 0 0 0 0-2z"/></svg></span>
+                <span>#garyavendanio</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="cv-footer">
+        <span>© 2026 Gary Avendaño Rosado (avroec / avrodev) — Hecho con HTML/CSS/JS puro</span>
+    </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

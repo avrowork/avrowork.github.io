@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="shadcn/ui — Pure CSS & JavaScript component replicas">
+    <meta name="robots" content="noindex">
+    <title>shadcn/ui — Components</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Demo layout overrides — sticky header */
+        .demo-header {
+            position: sticky; top: 0; z-index: 45;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .demo-header h1 { font-size: 1.125rem; font-weight: 700; }
+        .demo-header-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .demo-sidebar {
+            position: fixed; top: 55px; left: 0; bottom: 0;
+            width: 260px;
+            border-right: 1px solid var(--border);
+            background: var(--background);
+            padding: 1.5rem;
+            overflow-y: auto;
+            z-index: 40;
+        }
+        .demo-sidebar h2 { font-size: 0.8rem; font-weight: 600; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; margin-top: 1rem; }
+        .demo-sidebar h2:first-child { margin-top: 0; }
+        .demo-sidebar a {
+            display: block;
+            padding: 0.375rem 0.75rem;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            transition: all 150ms;
+            border-left: 2px solid transparent;
+        }
+        .demo-sidebar a:hover { background: var(--accent); color: var(--accent-foreground); }
+        .demo-sidebar a.active { background: var(--accent); color: var(--foreground); border-left-color: var(--primary); font-weight: 500; }
+        .demo-main { margin-left: 260px; margin-top: 55px; }
+
+        /* Section spacing */
+        .demo-section { padding: 3rem 2.5rem; border-bottom: 1px solid var(--border); }
+        .demo-section:last-child { border-bottom: none; }
+        .demo-section-title {
+            font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem;
+            color: var(--foreground); letter-spacing: -0.025em;
+        }
+        .demo-section-desc {
+            font-size: 0.9375rem; color: var(--muted-foreground); margin-bottom: 2rem;
+            line-height: 1.6; max-width: 44rem;
+        }
+        .demo-subtitle {
+            font-size: 1rem; font-weight: 600; color: var(--foreground);
+            margin-bottom: 0.75rem; margin-top: 2rem;
+        }
+        .demo-subtitle:first-child { margin-top: 0; }
+
+        /* Component showcase grids */
+        .demo-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; }
+        .demo-col { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .demo-card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .demo-table-wrap { max-width: 700px; margin-bottom: 1.5rem; }
+
+        /* Context menu target */
+        .context-target {
+            display: flex; align-items: center; justify-content: center;
+            padding: 3rem; border: 2px dashed var(--border); border-radius: var(--radius);
+            color: var(--muted-foreground); font-size: 0.875rem; user-select: none;
+            transition: all 150ms;
+        }
+        .context-target:hover { border-color: var(--ring); color: var(--foreground); background: var(--accent); }
+
+        /* Carousel demo slides */
+        .carousel-demo-slide {
+            display: flex; align-items: center; justify-content: center;
+            height: 260px; background: var(--muted); font-size: 1.5rem;
+            font-weight: 700; color: var(--muted-foreground); border-radius: var(--radius);
+        }
+
+        /* Scroll area demo */
+        .scroll-demo-content { height: 180px; padding: 1rem; }
+        .scroll-demo-content p { margin-bottom: 0.75rem; font-size: 0.875rem; }
+
+        /* Avatar group */
+        .avatar-label-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-sidebar { display: none; }
+            .demo-main { margin-left: 0; }
+            .demo-section { padding: 2rem 1rem; }
+            .demo-section-title { font-size: 1.35rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======= HEADER ======= -->
+<header class="demo-header">
+    <a href="index.html" class="btn btn-ghost btn-sm" style="margin-right:auto;">← Back to CV</a>
+    <h1>Components</h1>
+    <div class="demo-header-actions">
+        <button class="btn btn-outline btn-sm" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <a href="https://ui.shadcn.com/docs/components" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">
+            Docs ↗
+        </a>
+    </div>
+</header>
+
+<!-- ======= SIDEBAR ======= -->
+<aside class="demo-sidebar">
+    <h2>Components</h2>
+    <a href="#button">Button</a>
+    <a href="#input">Input / Label / Textarea</a>
+    <a href="#checkbox-check">Checkbox / Radio / Switch</a>
+    <a href="#combobox">Combobox</a>
+    <a href="#select">Select</a>
+    <a href="#slider">Slider</a>
+    <a href="#badge">Badge</a>
+    <a href="#card">Card</a>
+    <a href="#table">Table</a>
+    <a href="#alert">Alert</a>
+    <a href="#accordion">Accordion</a>
+    <a href="#collapsible">Collapsible</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#toggle">Toggle</a>
+    <a href="#breadcrumb">Breadcrumb</a>
+    <a href="#pagination">Pagination</a>
+    <a href="#separator">Separator</a>
+    <a href="#avatar">Avatar</a>
+    <a href="#progress">Progress</a>
+    <a href="#skeleton">Skeleton</a>
+    <a href="#spinner">Spinner</a>
+    <a href="#kbd">Kbd</a>
+    <a href="#aspect">Aspect Ratio</a>
+    <a href="#dialog">Dialog</a>
+    <a href="#alertdialog">Alert Dialog</a>
+    <a href="#sheet">Sheet / Drawer</a>
+    <a href="#tooltip">Tooltip</a>
+    <a href="#popover">Popover</a>
+    <a href="#hovercard">Hover Card</a>
+    <a href="#dropdown">Dropdown Menu</a>
+    <a href="#contextmenu">Context Menu</a>
+    <a href="#menubar">Menubar</a>
+    <a href="#navmenu">Navigation Menu</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#command">Command Palette</a>
+    <a href="#carousel">Carousel</a>
+    <a href="#toast-demo">Toast</a>
+    <a href="#empty-state">Empty State</a>
+    <a href="#form-demo">Form</a>
+</aside>
+
+<!-- ======= MAIN CONTENT ======= -->
+<main class="demo-main">
+
+<!-- ========== BUTTON ========== -->
+<section class="demo-section" id="button">
+    <h2 class="demo-section-title">Button</h2>
+    <p class="demo-section-desc">Displays a button or a component that looks like a button. Variants: default, secondary, destructive, outline, ghost, link. Sizes: sm, default, lg, icon.</p>
+
+    <p class="demo-subtitle">Variants</p>
+    <div class="demo-row">
+        <button class="btn">Default</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-destructive">Destructive</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-link">Link</button>
+    </div>
+
+    <p class="demo-subtitle">Sizes</p>
+    <div class="demo-row">
+        <button class="btn btn-sm">Small</button>
+        <button class="btn">Default</button>
+        <button class="btn btn-lg">Large</button>
+        <button class="btn btn-icon">+</button>
+        <button class="btn btn-icon btn-sm">+</button>
+        <button class="btn btn-icon btn-lg">+</button>
+    </div>
+
+    <p class="demo-subtitle">Disabled</p>
+    <div class="demo-row">
+        <button class="btn" disabled>Disabled</button>
+        <button class="btn btn-outline" disabled>Outline Disabled</button>
+    </div>
+</section>
+
+<!-- ========== INPUT / LABEL / TEXTAREA ========== -->
+<section class="demo-section" id="input">
+    <h2 class="demo-section-title">Input / Label / Textarea</h2>
+    <p class="demo-section-desc">Form controls for collecting user input with consistent styling and focus states.</p>
+
+    <div class="demo-card-row">
+        <div>
+            <label class="label" for="demo-input">Email</label>
+            <input class="input" id="demo-input" type="email" placeholder="you@example.com">
+        </div>
+        <div>
+            <label class="label" for="demo-input-sm">Small input</label>
+            <input class="input input-sm" id="demo-input-sm" type="text" placeholder="Small">
+        </div>
+        <div>
+            <label class="label" for="demo-input-lg">Large input</label>
+            <input class="input input-lg" id="demo-input-lg" type="text" placeholder="Large">
+        </div>
+        <div>
+            <label class="label" for="demo-input-disabled">Disabled</label>
+            <input class="input" id="demo-input-disabled" type="text" value="Can't edit" disabled>
+        </div>
+    </div>
+
+    <div class="demo-card-row">
+        <div>
+            <label class="label label-required" for="demo-textarea">Message</label>
+            <textarea class="textarea" id="demo-textarea" placeholder="Write your message here…" rows="4"></textarea>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CHECKBOX / RADIO / SWITCH ========== -->
+<section class="demo-section" id="checkbox-check">
+    <h2 class="demo-section-title">Checkbox / Radio / Switch</h2>
+    <p class="demo-section-desc">Toggle selection controls with custom styling and interaction states.</p>
+
+    <p class="demo-subtitle">Checkbox</p>
+    <div class="demo-col">
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="checkbox" type="checkbox"> Accept terms and conditions
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="checkbox" type="checkbox" checked> This one is checked
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="checkbox" type="checkbox" disabled> This one is disabled
+        </label>
+    </div>
+
+    <p class="demo-subtitle">Radio Group</p>
+    <div class="demo-col">
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="radio" type="radio" name="demo-radio" checked> Option A
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="radio" type="radio" name="demo-radio"> Option B
+        </label>
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;">
+            <input class="radio" type="radio" name="demo-radio" disabled> Option C (disabled)
+        </label>
+    </div>
+
+    <p class="demo-subtitle">Switch</p>
+    <div class="demo-col">
+        <label style="display:flex;align-items:center;gap:0.75rem;font-size:.875rem;">
+            <input class="switch" type="checkbox" role="switch" aria-label="Airplane mode"> Airplane mode
+        </label>
+        <label style="display:flex;align-items:center;gap:0.75rem;font-size:.875rem;">
+            <input class="switch" type="checkbox" role="switch" checked aria-label="Notifications"> Notifications
+        </label>
+        <label style="display:flex;align-items:center;gap:0.75rem;font-size:.875rem;">
+            <input class="switch" type="checkbox" role="switch" disabled aria-label="Disabled"> Disabled
+        </label>
+    </div>
+</section>
+
+<!-- ========== COMBOBOX ========== -->
+<section class="demo-section" id="combobox">
+    <h2 class="demo-section-title">Combobox</h2>
+    <p class="demo-section-desc">An input with a dropdown of selectable options — type to filter and select with keyboard or mouse.</p>
+
+    <div style="max-width:340px;">
+        <label class="label" for="combobox-demo">Framework</label>
+        <div class="combobox" data-combobox>
+            <div class="combobox-trigger">
+                <input class="combobox-input" id="combobox-demo" type="text" placeholder="Search framework…" autocomplete="off" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list">
+                <button class="combobox-chevron" tabindex="-1" aria-label="Toggle options">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+            <div class="combobox-menu" role="listbox">
+                <div class="combobox-option" role="option" aria-selected="false" data-value="react">React</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="vue">Vue</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="svelte">Svelte</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="angular">Angular</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="next">Next.js</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="nuxt">Nuxt</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="remix">Remix</div>
+                <div class="combobox-option" role="option" aria-selected="false" data-value="astro">Astro</div>
+                <div class="combobox-empty" style="display:none;">No framework found.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SELECT ========== -->
+<section class="demo-section" id="select">
+    <h2 class="demo-section-title">Select</h2>
+    <p class="demo-section-desc">Native and custom select components for choosing from a list of options.</p>
+
+    <p class="demo-subtitle">Native Select</p>
+    <div style="max-width:300px;margin-bottom:1.5rem;">
+        <label class="label" for="demo-native-select">Country</label>
+        <select class="select" id="demo-native-select">
+            <option value="" disabled selected>Select a country…</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+            <option value="bd" selected>Bangladesh</option>
+        </select>
+    </div>
+
+    <p class="demo-subtitle">Custom Select</p>
+    <div style="max-width:300px;">
+        <label class="label">Framework</label>
+        <div class="custom-select">
+            <button class="custom-select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                <span class="select-value">Select a framework…</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="custom-select-menu" role="listbox">
+                <div class="custom-select-option" role="option" aria-selected="false">
+                    <span class="check-icon">✓</span> React
+                </div>
+                <div class="custom-select-option" role="option" aria-selected="false">
+                    <span class="check-icon">✓</span> Vue
+                </div>
+                <div class="custom-select-option" role="option" aria-selected="false">
+                    <span class="check-icon">✓</span> Svelte
+                </div>
+                <div class="custom-select-option" role="option" aria-selected="false">
+                    <span class="check-icon">✓</span> Angular
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDER ========== -->
+<section class="demo-section" id="slider">
+    <h2 class="demo-section-title">Slider</h2>
+    <p class="demo-section-desc">An input where the user selects a value from within a given range.</p>
+    <div style="max-width:400px;">
+        <label class="label">Volume</label>
+        <input class="slider" type="range" min="0" max="100" value="65" aria-label="Volume slider">
+        <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted-foreground);margin-top:.25rem;">
+            <span>0</span><span>100</span>
+        </div>
+    </div>
+</section>
+
+<!-- ========== BADGE ========== -->
+<section class="demo-section" id="badge">
+    <h2 class="demo-section-title">Badge</h2>
+    <p class="demo-section-desc">Used to highlight an item's status for quick recognition.</p>
+    <div class="demo-row">
+        <span class="badge">Default</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-destructive">Destructive</span>
+        <span class="badge badge-outline">Outline</span>
+    </div>
+</section>
+
+<!-- ========== CARD ========== -->
+<section class="demo-section" id="card">
+    <h2 class="demo-section-title">Card</h2>
+    <p class="demo-section-desc">Displays a card with header, content, and footer — good for grouping related information.</p>
+    <div class="demo-card-row">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Create project</h3>
+                <p class="card-description">Deploy your new project in one-click.</p>
+            </div>
+            <div class="card-content">
+                <p>Start building your next idea — simple setup, powerful results. Connect your repo or start from scratch.</p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-outline btn-sm">Cancel</button>
+                <button class="btn btn-sm">Deploy</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Notifications</h3>
+                <p class="card-description">You have 3 unread messages.</p>
+            </div>
+            <div class="card-content">
+                <p style="font-size:.875rem;color:var(--muted-foreground);">Recent activity from your team members will appear here.</p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm">Mark all as read</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TABLE ========== -->
+<section class="demo-section" id="table">
+    <h2 class="demo-section-title">Table</h2>
+    <p class="demo-section-desc">A responsive table for displaying structured data.</p>
+    <div class="demo-table-wrap">
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Status</th>
+                        <th>Method</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>INV001</td>
+                        <td><span class="badge badge-outline">Paid</span></td>
+                        <td>Credit Card</td>
+                        <td>$250.00</td>
+                    </tr>
+                    <tr>
+                        <td>INV002</td>
+                        <td><span class="badge badge-secondary">Pending</span></td>
+                        <td>PayPal</td>
+                        <td>$150.00</td>
+                    </tr>
+                    <tr>
+                        <td>INV003</td>
+                        <td><span class="badge badge-destructive">Failed</span></td>
+                        <td>Bank Transfer</td>
+                        <td>$350.00</td>
+                    </tr>
+                    <tr>
+                        <td>INV004</td>
+                        <td><span class="badge badge-outline">Paid</span></td>
+                        <td>Credit Card</td>
+                        <td>$450.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ALERT ========== -->
+<section class="demo-section" id="alert">
+    <h2 class="demo-section-title">Alert</h2>
+    <p class="demo-section-desc">Displays a callout for user attention — info, success, warning, or destructive.</p>
+    <div class="demo-col" style="max-width:600px;">
+        <div class="alert">
+            <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <div>
+                <div class="alert-title">Heads up!</div>
+                <div class="alert-description">Your session expires in 5 minutes. Save your work before continuing.</div>
+            </div>
+        </div>
+        <div class="alert alert-destructive">
+            <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <div>
+                <div class="alert-title">Error</div>
+                <div class="alert-description">Your request could not be processed. Please try again.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ACCORDION ========== -->
+<section class="demo-section" id="accordion">
+    <h2 class="demo-section-title">Accordion</h2>
+    <p class="demo-section-desc">A vertically stacked set of interactive headings that reveal or hide associated content.</p>
+    <div style="max-width:600px;">
+        <div class="accordion">
+            <div class="accordion-item open">
+                <button class="accordion-trigger" aria-expanded="true">
+                    What is shadcn/ui?
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">shadcn/ui is a collection of re-usable components built using Radix UI and Tailwind CSS. It's not a component library — it's code you copy and paste into your projects.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    Is it accessible?
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">Yes. All components follow WAI-ARIA design patterns and are tested with screen readers and keyboard-only navigation.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    Can I customize the components?
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">Absolutely. Since the code lives in your project, you have full control over every detail — styling, behavior, and structure.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== COLLAPSIBLE ========== -->
+<section class="demo-section" id="collapsible">
+    <h2 class="demo-section-title">Collapsible</h2>
+    <p class="demo-section-desc">An interactive component that expands/collapses a panel of content.</p>
+    <div style="max-width:600px;">
+        <div class="collapsible">
+            <button class="collapsible-trigger" aria-expanded="false">
+                View details
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">This content was hidden. You can put any details here — settings, additional information, nested forms, etc. The animation is smooth and the component is fully accessible.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TABS ========== -->
+<section class="demo-section" id="tabs">
+    <h2 class="demo-section-title">Tabs</h2>
+    <p class="demo-section-desc">A set of layered sections of content, known as tab panels, that are displayed one at a time.</p>
+    <div class="tabs" style="max-width:500px;">
+        <div class="tabs-list">
+            <button class="tabs-trigger" data-value="account" aria-selected="true">Account</button>
+            <button class="tabs-trigger" data-value="password" aria-selected="false">Password</button>
+            <button class="tabs-trigger" data-value="billing" aria-selected="false">Billing</button>
+        </div>
+        <div class="tabs-content">
+            <div class="tabs-panel active" data-value="account">
+                <div style="padding:1rem;font-size:.875rem;">
+                    <p style="font-weight:600;">Account Settings</p>
+                    <p style="color:var(--muted-foreground);margin-top:.25rem;">Manage your email, name, and profile information.</p>
+                </div>
+            </div>
+            <div class="tabs-panel" data-value="password">
+                <div style="padding:1rem;font-size:.875rem;">
+                    <p style="font-weight:600;">Change Password</p>
+                    <p style="color:var(--muted-foreground);margin-top:.25rem;">Update your password. Use at least 8 characters.</p>
+                </div>
+            </div>
+            <div class="tabs-panel" data-value="billing">
+                <div style="padding:1rem;font-size:.875rem;">
+                    <p style="font-weight:600;">Billing</p>
+                    <p style="color:var(--muted-foreground);margin-top:.25rem;">View your plan, usage, and payment methods.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TOGGLE ========== -->
+<section class="demo-section" id="toggle">
+    <h2 class="demo-section-title">Toggle / Toggle Group</h2>
+    <p class="demo-section-desc">A two-state button that can be either on or off. Group version allows single selection.</p>
+
+    <p class="demo-subtitle">Toggle</p>
+    <div class="demo-row">
+        <button class="toggle" aria-pressed="false" aria-label="Toggle bold">
+            <strong>B</strong>
+        </button>
+        <button class="toggle" aria-pressed="false" aria-label="Toggle italic">
+            <em>I</em>
+        </button>
+        <button class="toggle" aria-pressed="false" aria-label="Toggle underline">
+            <u>U</u>
+        </button>
+    </div>
+
+    <p class="demo-subtitle">Toggle Group (single-select)</p>
+    <div class="toggle-group">
+        <button class="toggle" aria-pressed="true">Day</button>
+        <button class="toggle" aria-pressed="false">Week</button>
+        <button class="toggle" aria-pressed="false">Month</button>
+    </div>
+</section>
+
+<!-- ========== BREADCRUMB ========== -->
+<section class="demo-section" id="breadcrumb">
+    <h2 class="demo-section-title">Breadcrumb</h2>
+    <p class="demo-section-desc">Displays the path to the current resource using a hierarchy of links.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-item">
+            <a class="breadcrumb-link" href="#">Home</a>
+            <span class="breadcrumb-separator">/</span>
+        </div>
+        <div class="breadcrumb-item">
+            <a class="breadcrumb-link" href="#">Components</a>
+            <span class="breadcrumb-separator">/</span>
+        </div>
+        <div class="breadcrumb-item">
+            <a class="breadcrumb-link" href="#" aria-current="page">Button</a>
+        </div>
+    </nav>
+</section>
+
+<!-- ========== PAGINATION ========== -->
+<section class="demo-section" id="pagination">
+    <h2 class="demo-section-title">Pagination</h2>
+    <p class="demo-section-desc">Navigates between pages in a dataset.</p>
+    <nav class="pagination" aria-label="Pagination">
+        <button class="pagination-item" disabled aria-label="Previous">‹</button>
+        <button class="pagination-item active">1</button>
+        <button class="pagination-item">2</button>
+        <button class="pagination-item">3</button>
+        <button class="pagination-item">…</button>
+        <button class="pagination-item">10</button>
+        <button class="pagination-item" aria-label="Next">›</button>
+    </nav>
+</section>
+
+<!-- ========== SEPARATOR ========== -->
+<section class="demo-section" id="separator">
+    <h2 class="demo-section-title">Separator</h2>
+    <p class="demo-section-desc">Visually or semantically separates content.</p>
+    <div style="max-width:400px;">
+        <div style="padding:1rem;font-size:.875rem;">Content above</div>
+        <div class="separator" role="separator" style="margin:0.5rem 0;"></div>
+        <div style="padding:1rem;font-size:.875rem;">Content below</div>
+        <div class="separator" role="separator" style="margin:1rem 0;">OR</div>
+        <div style="padding:1rem;font-size:.875rem;">Content after labeled separator</div>
+    </div>
+</section>
+
+<!-- ========== AVATAR ========== -->
+<section class="demo-section" id="avatar">
+    <h2 class="demo-section-title">Avatar</h2>
+    <p class="demo-section-desc">An image element with a fallback for representing the user.</p>
+
+    <p class="demo-subtitle">Sizes</p>
+    <div class="demo-row">
+        <div class="avatar avatar-sm"><span>JD</span></div>
+        <div class="avatar"><span>JD</span></div>
+        <div class="avatar avatar-lg"><span>JD</span></div>
+    </div>
+
+    <p class="demo-subtitle">Avatar Group</p>
+    <div class="avatar-group">
+        <div class="avatar"><span>AA</span></div>
+        <div class="avatar"><span>BB</span></div>
+        <div class="avatar"><span>CC</span></div>
+        <div class="avatar"><span>+3</span></div>
+    </div>
+</section>
+
+<!-- ========== PROGRESS ========== -->
+<section class="demo-section" id="progress">
+    <h2 class="demo-section-title">Progress</h2>
+    <p class="demo-section-desc">Displays an indicator showing the completion progress of a task.</p>
+
+    <div class="demo-col" style="max-width:400px;">
+        <div class="progress">
+            <div class="progress-bar" style="width:65%;" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" style="width:25%;background:var(--warning);" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" style="width:100%;background:var(--success);" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress progress-indeterminate">
+            <div class="progress-bar" role="progressbar"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SKELETON ========== -->
+<section class="demo-section" id="skeleton">
+    <h2 class="demo-section-title">Skeleton</h2>
+    <p class="demo-section-desc">Used to show a placeholder while content is loading.</p>
+    <div class="demo-col" style="max-width:400px;gap:0.75rem;">
+        <div class="skeleton" style="height:1.25rem;width:60%;"></div>
+        <div class="skeleton" style="height:1rem;width:100%;"></div>
+        <div class="skeleton" style="height:1rem;width:90%;"></div>
+        <div class="skeleton" style="height:1rem;width:80%;"></div>
+        <div class="skeleton" style="height:8rem;width:100%;margin-top:.5rem;"></div>
+    </div>
+</section>
+
+<!-- ========== SPINNER ========== -->
+<section class="demo-section" id="spinner">
+    <h2 class="demo-section-title">Spinner</h2>
+    <p class="demo-section-desc">A loading indicator to show an ongoing operation.</p>
+    <div class="demo-row">
+        <div class="spinner spinner-sm"></div>
+        <div class="spinner"></div>
+        <div class="spinner spinner-lg"></div>
+    </div>
+</section>
+
+<!-- ========== KBD ========== -->
+<section class="demo-section" id="kbd">
+    <h2 class="demo-section-title">Kbd</h2>
+    <p class="demo-section-desc">Represents keyboard input or shortcuts.</p>
+    <div class="demo-row" style="font-size:.875rem;">
+        <span style="display:inline-flex;align-items:center;gap:.375rem;">
+            Press <kbd class="kbd">⌘</kbd> + <kbd class="kbd">K</kbd> to open the command palette
+        </span>
+    </div>
+</section>
+
+<!-- ========== ASPECT RATIO ========== -->
+<section class="demo-section" id="aspect">
+    <h2 class="demo-section-title">Aspect Ratio</h2>
+    <p class="demo-section-desc">Displays content within a desired ratio.</p>
+    <div style="max-width:400px;">
+        <div class="aspect-ratio" style="--ratio:56.25%;">
+            <div style="background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.875rem;color:var(--muted-foreground);">16:9</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== DIALOG ========== -->
+<section class="demo-section" id="dialog">
+    <h2 class="demo-section-title">Dialog</h2>
+    <p class="demo-section-desc">A modal window that appears over the main content to focus attention on a specific task.</p>
+
+    <button class="btn btn-outline" data-dialog-trigger="demo-dialog">Open Dialog</button>
+
+    <!-- Dialog overlay -->
+    <div class="dialog-overlay" data-dialog-overlay="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+        <div class="dialog">
+            <button class="dialog-close" data-dialog-close aria-label="Close">✕</button>
+            <div class="dialog-header">
+                <h3 class="dialog-title" id="dialog-title">Edit Profile</h3>
+                <p class="dialog-description">Make changes to your profile here. Click save when you're done.</p>
+            </div>
+            <div class="dialog-content">
+                <div style="display:flex;flex-direction:column;gap:.75rem;">
+                    <div>
+                        <label class="label" for="dialog-name">Name</label>
+                        <input class="input" id="dialog-name" value="John Doe">
+                    </div>
+                    <div>
+                        <label class="label" for="dialog-email">Email</label>
+                        <input class="input" id="dialog-email" type="email" value="john@example.com">
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="btn btn-outline" data-dialog-close>Cancel</button>
+                <button class="btn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ALERT DIALOG ========== -->
+<section class="demo-section" id="alertdialog">
+    <h2 class="demo-section-title">Alert Dialog</h2>
+    <p class="demo-section-desc">A modal dialog that interrupts the user with important content and expects a response.</p>
+
+    <button class="btn btn-destructive" data-alert-dialog-trigger="delete-confirm">Delete Account</button>
+
+    <!-- Alert Dialog overlay -->
+    <div class="alert-dialog-overlay" data-alert-dialog-overlay="delete-confirm" role="alertdialog" aria-modal="true" aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-desc">
+        <div class="alert-dialog">
+            <div class="alert-dialog-header">
+                <h3 class="alert-dialog-title" id="alert-dialog-title">Are you absolutely sure?</h3>
+                <p class="alert-dialog-description" id="alert-dialog-desc">
+                    This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
+                </p>
+            </div>
+            <div class="alert-dialog-footer">
+                <button class="btn btn-outline" data-alert-dialog-cancel>Cancel</button>
+                <button class="btn btn-destructive" data-alert-dialog-action>Yes, delete account</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SHEET ========== -->
+<section class="demo-section" id="sheet">
+    <h2 class="demo-section-title">Sheet / Drawer</h2>
+    <p class="demo-section-desc">Extends the Dialog component to display content that complements the main screen content — slides in from the edges.</p>
+
+    <div class="demo-row">
+        <button class="btn btn-outline" data-sheet-trigger="sheet-left">Left Sheet</button>
+        <button class="btn btn-outline" data-sheet-trigger="sheet-right">Right Sheet</button>
+        <button class="btn btn-outline" data-sheet-trigger="sheet-top">Top Sheet</button>
+        <button class="btn btn-outline" data-sheet-trigger="sheet-bottom">Bottom Sheet</button>
+    </div>
+
+    <!-- Left Sheet -->
+    <div class="sheet-overlay" data-sheet-overlay="sheet-left"></div>
+    <div class="sheet sheet-left" data-sheet="sheet-left" role="dialog" aria-modal="true">
+        <button class="sheet-close" data-sheet-close aria-label="Close">✕</button>
+        <div class="sheet-header">
+            <h3 class="sheet-title">Navigation</h3>
+            <p class="sheet-description">Browse the available sections.</p>
+        </div>
+        <div class="sheet-content">
+            <div style="display:flex;flex-direction:column;gap:.5rem;">
+                <a href="#" class="btn btn-ghost" style="justify-content:flex-start;">Dashboard</a>
+                <a href="#" class="btn btn-ghost" style="justify-content:flex-start;">Settings</a>
+                <a href="#" class="btn btn-ghost" style="justify-content:flex-start;">Billing</a>
+                <a href="#" class="btn btn-ghost" style="justify-content:flex-start;">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Sheet -->
+    <div class="sheet-overlay" data-sheet-overlay="sheet-right"></div>
+    <div class="sheet sheet-right" data-sheet="sheet-right" role="dialog" aria-modal="true">
+        <button class="sheet-close" data-sheet-close aria-label="Close">✕</button>
+        <div class="sheet-header">
+            <h3 class="sheet-title">Cart</h3>
+            <p class="sheet-description">Review your items before checkout.</p>
+        </div>
+        <div class="sheet-content">
+            <p style="font-size:.875rem;color:var(--muted-foreground);">Your cart is empty.</p>
+        </div>
+        <div class="sheet-footer">
+            <button class="btn btn-sm" data-sheet-close>Continue shopping</button>
+        </div>
+    </div>
+
+    <!-- Top Sheet -->
+    <div class="sheet-overlay" data-sheet-overlay="sheet-top"></div>
+    <div class="sheet sheet-top" data-sheet="sheet-top" role="dialog" aria-modal="true">
+        <button class="sheet-close" data-sheet-close aria-label="Close">✕</button>
+        <div class="sheet-header">
+            <h3 class="sheet-title">Quick Settings</h3>
+            <p class="sheet-description">Adjust your preferences.</p>
+        </div>
+        <div class="sheet-content" style="max-height:200px;overflow:auto;">
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+                <label style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;">
+                    <input class="switch" type="checkbox" role="switch" checked aria-label="Notifications"> Enable notifications
+                </label>
+                <label style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;">
+                    <input class="switch" type="checkbox" role="switch" aria-label="Debug mode"> Debug mode
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet -->
+    <div class="sheet-overlay" data-sheet-overlay="sheet-bottom"></div>
+    <div class="sheet sheet-bottom" data-sheet="sheet-bottom" role="dialog" aria-modal="true">
+        <button class="sheet-close" data-sheet-close aria-label="Close">✕</button>
+        <div class="sheet-header">
+            <h3 class="sheet-title">Share</h3>
+            <p class="sheet-description">Share this page with your team.</p>
+        </div>
+        <div class="sheet-content" style="overflow:auto;">
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+                <button class="btn btn-outline btn-sm">Copy Link</button>
+                <button class="btn btn-outline btn-sm">Email</button>
+                <button class="btn btn-outline btn-sm">Twitter</button>
+                <button class="btn btn-outline btn-sm">Slack</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TOOLTIP ========== -->
+<section class="demo-section" id="tooltip">
+    <h2 class="demo-section-title">Tooltip</h2>
+    <p class="demo-section-desc">A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.</p>
+
+    <div class="demo-row" style="gap:1.5rem;">
+        <span class="tooltip" data-side="top">
+            <button class="btn btn-outline tooltip-trigger">Hover me</button>
+            <span class="tooltip-content">This is a tooltip</span>
+        </span>
+        <span class="tooltip" data-side="bottom">
+            <span class="tooltip-trigger" tabindex="0" style="cursor:help;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;">Focusable tooltip</span>
+            <span class="tooltip-content">Appears on hover and focus</span>
+        </span>
+    </div>
+</section>
+
+<!-- ========== POPOVER ========== -->
+<section class="demo-section" id="popover">
+    <h2 class="demo-section-title">Popover</h2>
+    <p class="demo-section-desc">Displays rich content in a portal, triggered by a button.</p>
+
+    <div class="popover" data-side="bottom">
+        <button class="btn btn-outline popover-trigger">Open Popover</button>
+        <div class="popover-content">
+            <div style="font-weight:600;font-size:.875rem;margin-bottom:.5rem;">Notifications</div>
+            <p style="font-size:.875rem;color:var(--muted-foreground);margin-bottom:.75rem;">You have 3 new notifications.</p>
+            <div style="display:flex;gap:.5rem;">
+                <button class="btn btn-sm">View all</button>
+                <button class="btn btn-outline btn-sm">Dismiss</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== HOVER CARD ========== -->
+<section class="demo-section" id="hovercard">
+    <h2 class="demo-section-title">Hover Card</h2>
+    <p class="demo-section-desc">For sighted users to preview content available behind a link.</p>
+
+    <div class="hover-card" data-side="bottom">
+        <span class="hover-card-trigger" tabindex="0" style="font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:4px;">@shadcn</span>
+        <div class="hover-card-content">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+                <div class="avatar avatar-sm"><span>SC</span></div>
+                <div>
+                    <div style="font-weight:600;font-size:.875rem;">shadcn</div>
+                    <div style="font-size:.75rem;color:var(--muted-foreground);">@shadcn</div>
+                </div>
+            </div>
+            <p style="font-size:.875rem;color:var(--muted-foreground);">Creator of shadcn/ui — re-usable components built with Radix UI and Tailwind CSS.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== DROPDOWN MENU ========== -->
+<section class="demo-section" id="dropdown">
+    <h2 class="demo-section-title">Dropdown Menu</h2>
+    <p class="demo-section-desc">Displays a menu to the user — such as a set of actions or functions — triggered by a button.</p>
+
+    <div class="dropdown-menu">
+        <button class="btn btn-outline dropdown-menu-trigger" aria-expanded="false" aria-haspopup="menu">
+            Open Menu
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-menu-content" role="menu">
+            <div class="dropdown-menu-label">My Account</div>
+            <div class="dropdown-menu-item" role="menuitem" tabindex="0">
+                <svg class="dropdown-menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Profile
+                <span class="dropdown-menu-shortcut">⇧⌘P</span>
+            </div>
+            <div class="dropdown-menu-item" role="menuitem" tabindex="0">
+                <svg class="dropdown-menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Inbox
+                <span class="dropdown-menu-shortcut">⌘B</span>
+            </div>
+            <div class="dropdown-menu-item" role="menuitem" tabindex="0">
+                <svg class="dropdown-menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15L4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68L9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Settings
+                <span class="dropdown-menu-shortcut">⌘S</span>
+            </div>
+            <div class="dropdown-menu-separator" role="separator"></div>
+            <div class="dropdown-menu-item" role="menuitem" tabindex="0" data-destructive="true">
+                <svg class="dropdown-menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Log out
+                <span class="dropdown-menu-shortcut">⇧⌘Q</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTEXT MENU ========== -->
+<section class="demo-section" id="contextmenu">
+    <h2 class="demo-section-title">Context Menu</h2>
+    <p class="demo-section-desc">Displays a menu located at the pointer, triggered by right-clicking.</p>
+
+    <div class="context-target" data-context-menu-target="ctx-menu-demo" style="max-width:500px;">
+        Right-click anywhere in this area to open the context menu
+    </div>
+
+    <!-- Context Menu (hidden by default) -->
+    <div class="context-menu" id="ctx-menu-demo" role="menu" aria-label="Context menu">
+        <div class="context-menu-label">Actions</div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1">
+            ↩ Undo
+            <span class="context-menu-shortcut">⌘Z</span>
+        </div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1">
+            ↪ Redo
+            <span class="context-menu-shortcut">⌘⇧Z</span>
+        </div>
+        <div class="context-menu-separator" role="separator"></div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1">Cut</div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1">Copy</div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1">Paste</div>
+        <div class="context-menu-separator" role="separator"></div>
+        <div class="context-menu-item" role="menuitem" tabindex="-1" data-destructive="true">
+            Delete
+        </div>
+    </div>
+</section>
+
+<!-- ========== MENUBAR ========== -->
+<section class="demo-section" id="menubar">
+    <h2 class="demo-section-title">Menubar</h2>
+    <p class="demo-section-desc">A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.</p>
+
+    <div class="menubar">
+        <button class="menubar-trigger" aria-expanded="false" aria-haspopup="menu">File</button>
+        <div class="menubar-menu">
+            <div class="menubar-item">New Tab <span class="dropdown-menu-shortcut">⌘T</span></div>
+            <div class="menubar-item">New Window <span class="dropdown-menu-shortcut">⌘N</span></div>
+            <div class="menubar-item" style="opacity:.5;pointer-events:none;">New Incognito</div>
+            <div style="height:1px;margin:.25rem .5rem;background:var(--border);"></div>
+            <div class="menubar-item">Share</div>
+            <div class="menubar-item">Print</div>
+        </div>
+
+        <button class="menubar-trigger" aria-expanded="false" aria-haspopup="menu">Edit</button>
+        <div class="menubar-menu">
+            <div class="menubar-item">Undo <span class="dropdown-menu-shortcut">⌘Z</span></div>
+            <div class="menubar-item">Redo <span class="dropdown-menu-shortcut">⌘⇧Z</span></div>
+            <div style="height:1px;margin:.25rem .5rem;background:var(--border);"></div>
+            <div class="menubar-item">Cut</div>
+            <div class="menubar-item">Copy</div>
+            <div class="menubar-item">Paste</div>
+        </div>
+
+        <button class="menubar-trigger" aria-expanded="false" aria-haspopup="menu">Help</button>
+        <div class="menubar-menu">
+            <div class="menubar-item">Documentation</div>
+            <div class="menubar-item">About</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== NAVIGATION MENU ========== -->
+<section class="demo-section" id="navmenu">
+    <h2 class="demo-section-title">Navigation Menu</h2>
+    <p class="demo-section-desc">A collection of links for navigating websites.</p>
+
+    <nav class="nav-menu">
+        <a href="#" class="nav-menu-link active">Getting Started</a>
+        <a href="#" class="nav-menu-link">Components</a>
+        <a href="#" class="nav-menu-link">Documentation</a>
+        <a href="#" class="nav-menu-link">Examples</a>
+    </nav>
+</section>
+
+<!-- ========== CALENDAR ========== -->
+<section class="demo-section" id="calendar">
+    <h2 class="demo-section-title">Calendar</h2>
+    <p class="demo-section-desc">A date field component that allows users to select a date from a calendar grid.</p>
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <button class="calendar-prev btn btn-ghost btn-icon btn-sm" aria-label="Previous month">‹</button>
+            <span class="calendar-month" style="font-weight:600;font-size:.875rem;"></span>
+            <button class="calendar-next btn btn-ghost btn-icon btn-sm" aria-label="Next month">›</button>
+        </div>
+        <div class="calendar-grid"></div>
+    </div>
+</section>
+
+<!-- ========== COMMAND PALETTE ========== -->
+<section class="demo-section" id="command">
+    <h2 class="demo-section-title">Command Palette</h2>
+    <p class="demo-section-desc">Fast, composable, unstyled command menu for the web. Press <kbd class="kbd">⌘K</kbd> or start typing to search.</p>
+
+    <div class="command" style="max-width:500px;">
+        <div class="command-input">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Type a command or search..." aria-label="Search commands">
+        </div>
+        <div class="command-list">
+            <div class="command-group">
+                <div class="command-group-label">Suggestions</div>
+                <div class="command-item" tabindex="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Calendar
+                </div>
+                <div class="command-item" tabindex="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Search Documentation
+                </div>
+                <div class="command-item" tabindex="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15L4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68L9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Settings
+                </div>
+            </div>
+            <div class="command-group">
+                <div class="command-group-label">Pages</div>
+                <div class="command-item" tabindex="0">
+                    Home
+                    <kbd class="kbd">⌘H</kbd>
+                </div>
+                <div class="command-item" tabindex="0">
+                    Components
+                    <kbd class="kbd">⌘C</kbd>
+                </div>
+            </div>
+            <div class="command-empty" style="display:none;">No results found.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CAROUSEL ========== -->
+<section class="demo-section" id="carousel">
+    <h2 class="demo-section-title">Carousel</h2>
+    <p class="demo-section-desc">A carousel with motion and swipe built using Embla-style implementation.</p>
+
+    <div style="max-width:600px;">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide"><div class="carousel-demo-slide">Slide 1</div></div>
+                <div class="carousel-slide"><div class="carousel-demo-slide" style="background:var(--accent);">Slide 2</div></div>
+                <div class="carousel-slide"><div class="carousel-demo-slide">Slide 3</div></div>
+            </div>
+            <button class="carousel-prev" aria-label="Previous">‹</button>
+            <button class="carousel-next" aria-label="Next">›</button>
+            <div class="carousel-dots">
+                <button class="carousel-dot active" aria-label="Slide 1"></button>
+                <button class="carousel-dot" aria-label="Slide 2"></button>
+                <button class="carousel-dot" aria-label="Slide 3"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TOAST ========== -->
+<section class="demo-section" id="toast-demo">
+    <h2 class="demo-section-title">Toast</h2>
+    <p class="demo-section-desc">A succinct message that is displayed temporarily — also known as a Sonner. Click the buttons below to see toasts appear.</p>
+
+    <div class="demo-row">
+        <button class="btn btn-outline" data-toast='{"title":"Default Toast","description":"This is a regular notification.","variant":"default"}'>
+            Default Toast
+        </button>
+        <button class="btn btn-outline" data-toast='{"title":"Success!","description":"Your changes have been saved.","variant":"success"}'>
+            Success Toast
+        </button>
+        <button class="btn btn-outline" data-toast='{"title":"Error","description":"Something went wrong. Please try again.","variant":"destructive"}'>
+            Destructive Toast
+        </button>
+        <button class="btn btn-outline" data-toast='{"title":"Quick note","variant":"default","duration":2000}'>
+            Quick (2s)
+        </button>
+    </div>
+</section>
+
+<!-- ========== EMPTY STATE ========== -->
+<section class="demo-section" id="empty-state">
+    <h2 class="demo-section-title">Empty State</h2>
+    <p class="demo-section-desc">Displays when there is no data to show — encourages users to take an action.</p>
+
+    <div style="max-width:440px;">
+        <div class="empty">
+            <div class="empty-icon">📭</div>
+            <div class="empty-title">No projects yet</div>
+            <div class="empty-description">You haven't created any projects. Get started by creating your first one.</div>
+            <button class="btn btn-sm">Create Project</button>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FORM ========== -->
+<section class="demo-section" id="form-demo">
+    <h2 class="demo-section-title">Form</h2>
+    <p class="demo-section-desc">Building blocks for forms — combines Input, Label, and validation messages.</p>
+
+    <div style="max-width:500px;">
+        <div class="form-group">
+            <label class="label label-required" for="form-name">Full Name</label>
+            <input class="input" id="form-name" type="text" placeholder="John Doe">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label class="label" for="form-email">Email</label>
+                <input class="input" id="form-email" type="email" placeholder="john@example.com">
+            </div>
+            <div class="form-group">
+                <label class="label" for="form-phone">Phone</label>
+                <input class="input" id="form-phone" type="tel" placeholder="+1 (555) 000-0000">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label" for="form-select">Role</label>
+            <select class="select" id="form-select">
+                <option value="" disabled selected>Select role…</option>
+                <option value="designer">Designer</option>
+                <option value="developer">Developer</option>
+                <option value="manager">Manager</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="label" for="form-message">Message</label>
+            <textarea class="textarea" id="form-message" placeholder="Tell us about your project…" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;">
+                <input class="checkbox" type="checkbox"> I agree to the privacy policy
+            </label>
+        </div>
+        <div class="form-message" style="margin-bottom:.75rem;">Please fill in all required fields marked with *</div>
+        <div style="display:flex;gap:.75rem;">
+            <button class="btn">Submit</button>
+            <button class="btn btn-outline">Cancel</button>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

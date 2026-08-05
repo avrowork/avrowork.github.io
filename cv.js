@@ -37,69 +37,6 @@ function initTheme() {
   });
 }
 
-/* === Matrix rain (HiDPI + reactive) === */
-function initMatrixRain() {
-  const canvas = document.getElementById('matrix-rain');
-  if (!canvas || !canvas.getContext) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ01$<>=/+*░▒▓';
-  const FONT_PX = 14, COL_W = 14, FADE = 'rgba(0,0,0,0.06)', TICK_MS = 60;
-  const ACTIVE = new Set(['dark', 'terminal']);
-  let cols = 0, drops = [], intervalId = null, dpr = Math.max(1, window.devicePixelRatio || 1);
-
-  function currentTheme() {
-    const attr = document.documentElement.getAttribute('data-theme');
-    if (attr) return attr;
-    try { const saved = localStorage.getItem('theme'); if (saved) return saved; } catch (_) {}
-    return 'light';
-  }
-  const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
-  function isActive() { return !reducedMQ.matches && ACTIVE.has(currentTheme()); }
-  function resize() {
-    dpr = Math.max(1, window.devicePixelRatio || 1);
-    const w = window.innerWidth, h = window.innerHeight;
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cols = Math.max(1, Math.floor(w / COL_W));
-    drops = Array.from({ length: cols }, function () { return Math.random() * (h / FONT_PX); });
-  }
-  function step() {
-    if (!isActive()) { stop(); return; }
-    const w = canvas.width / dpr, h = canvas.height / dpr;
-    ctx.fillStyle = FADE;
-    ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = currentTheme() === 'terminal' ? 'rgba(0,255,65,0.55)' : 'rgba(0,255,200,0.45)';
-    ctx.font = FONT_PX + "px 'IBM Plex Mono', ui-monospace, monospace";
-    for (let i = 0; i < cols; i++) {
-      const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-      const y = drops[i] * FONT_PX;
-      ctx.fillText(ch, i * COL_W, y);
-      if (y > h && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
-    }
-  }
-  function start() {
-    if (intervalId) return;
-    resize();
-    intervalId = setInterval(step, TICK_MS);
-  }
-  function stop() {
-    if (!intervalId) return;
-    clearInterval(intervalId);
-    intervalId = null;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-  window.addEventListener('resize', function () { if (isActive()) resize(); });
-  new MutationObserver(function () { if (isActive()) start(); else stop(); })
-    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  function onReduced() { if (isActive()) start(); else stop(); }
-  if (reducedMQ.addEventListener) reducedMQ.addEventListener('change', onReduced);
-  else if (reducedMQ.addListener) reducedMQ.addListener(onReduced);
-  if (isActive()) start();
-}
-
 /* === Typing hero === */
 function initTypedHero() {
   const el = document.querySelector('[data-typed-hero]');
@@ -218,7 +155,6 @@ function initDrawer() {
 
 /* === Boot === */
 document.addEventListener('DOMContentLoaded', function () {
-  initMatrixRain();
   initTypedHero();
   initTheme();
   initScrollSpy();

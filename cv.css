@@ -684,3 +684,53 @@ body.drawer-open{overflow:hidden}
 @media (max-width: 360px) {
   .cv-hero-stats { grid-template-columns: 1fr; }
 }
+
+/* =====================================================
+   METHODOLOGY (Spec-Driven workflow) — 4-step grid
+   ===================================================== */
+
+.cv-method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.cv-method {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.1rem;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: var(--card);
+  transition: border-color 150ms, transform 150ms;
+}
+.cv-method:hover { border-color: var(--ring); transform: translateY(-2px); }
+.cv-method-num {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+  background: var(--background);
+}
+.cv-method h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+.cv-method p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .cv-method-grid { grid-template-columns: 1fr; }
+}

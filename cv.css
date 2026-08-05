@@ -226,3 +226,421 @@ img,svg,video{display:block;max-width:100%}
 .cv-footer,footer{padding-bottom:max(2rem,env(safe-area-inset-bottom))!important;padding-left:max(3rem,env(safe-area-inset-left))!important;padding-right:max(3rem,env(safe-area-inset-right))!important}
 @media(max-width:768px){.cv-footer,footer{padding-left:max(1.5rem,env(safe-area-inset-left))!important;padding-right:max(1.5rem,env(safe-area-inset-right))!important}}
 @media(min-width:769px)and(max-width:1024px){.cv-sidebar{width:200px}.cv-main{margin-left:200px}}
+
+/* =====================================================
+   CONTEXT & LAYOUT — richer CV sections
+   ===================================================== */
+
+/* ---- Hero status pill under avatar ---- */
+.cv-hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  background: var(--background);
+}
+.cv-hero-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: cv-hero-pulse 1.8s ease-out infinite;
+}
+@keyframes cv-hero-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* ---- Hero meta list (icon-led 3 items) ---- */
+.cv-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+}
+.cv-hero-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cv-hero-meta svg { color: var(--primary); flex-shrink: 0; }
+
+/* ---- Hero stats strip (4 quick numbers) ---- */
+.cv-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cv-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.5rem 2rem;
+  background: var(--background);
+}
+.cv-stat-num {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.cv-stat-label {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+}
+
+/* ---- About: longer paragraphs with more rhythm ---- */
+.cv-about-text p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--muted-foreground);
+  max-width: 64ch;
+  margin-bottom: 1rem;
+}
+.cv-about-text p:last-child { margin-bottom: 0; }
+
+/* ---- Subhead inside a section ---- */
+.cv-subhead {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+/* ---- Capabilities grid (4 cards) ---- */
+.cv-capabilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.cv-capability {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  transition: border-color 150ms;
+}
+.cv-capability:hover { border-color: var(--ring); }
+.cv-capability h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+.cv-capability p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* ---- Achievements list inside Experience cards ---- */
+.cv-achievements {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cv-achievements li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+.cv-achievements li::before {
+  content: "\2192";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ---- Timeline range + length label ---- */
+.cv-timeline-date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.cv-timeline-len {
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  opacity: 0.75;
+}
+
+/* ---- Stack bar at the bottom of each role ---- */
+.cv-timeline-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+.cv-stack-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  margin-right: 0.25rem;
+}
+
+/* ---- Skills intro line ---- */
+.cv-skills-intro {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ---- Skills categories layout ---- */
+.cv-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.cv-skills-cat {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.cv-skills-cat h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.cv-skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cv-skills-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--foreground);
+  border-bottom: 1px dotted var(--border);
+  padding-bottom: 0.4rem;
+}
+.cv-skills-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.cv-skill-name { flex: 1; min-width: 0; }
+.cv-skill-years {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.cv-skill-years-novice {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ---- Project head with role + year + status ---- */
+.cv-project-card { padding: 0; }
+.cv-project-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+.cv-project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.cv-project-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.cv-project-year {
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.cv-project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.7rem;
+  background: var(--background);
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.cv-project-status-live {
+  border-color: #22c55e;
+  color: #22c55e;
+}
+.cv-project-status-live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: cv-hero-pulse 1.8s ease-out infinite;
+}
+
+/* ---- Project body (with new headline / bullets) ---- */
+.cv-project-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 1rem 1.25rem 0.5rem;
+}
+.cv-project-bullets {
+  list-style: none;
+  margin: 0.75rem 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.cv-project-bullets li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+.cv-project-bullets li::before {
+  content: "\B7";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+.cv-project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---- Project footer (stack + link in one row) ---- */
+.cv-project-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px dashed var(--border);
+}
+
+/* ---- Contact intro block ---- */
+.cv-contact-intro {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+  max-width: 64ch;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  background: var(--card);
+  margin-bottom: 1.25rem;
+}
+.cv-contact-intro p { margin: 0; }
+
+/* ---- Contact info grid (label/value pairs) ---- */
+.cv-contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.cv-contact-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem;
+  background: var(--background);
+}
+.cv-contact-info-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+.cv-contact-info-value {
+  font-size: 0.85rem;
+  color: var(--foreground);
+}
+
+/* ---- Contact items (each link card now has a label / value pair) ---- */
+.cv-contact-item .cv-contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+  flex: 1;
+}
+.cv-contact-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+}
+.cv-contact-value {
+  font-size: 0.85rem;
+  color: var(--foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Mobile overrides for the new sections ---- */
+@media (max-width: 768px) {
+  .cv-hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .cv-stat { padding: 1.25rem 1.5rem; }
+  .cv-stat-num { font-size: 1.4rem; }
+  .cv-capabilities { grid-template-columns: 1fr; }
+  .cv-skills-grid { grid-template-columns: 1fr; }
+  .cv-hero-meta { font-size: 0.8rem; }
+  .cv-subhead { margin-top: 2rem; }
+  .cv-project-footer { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+}
+
+@media (max-width: 360px) {
+  .cv-hero-stats { grid-template-columns: 1fr; }
+}

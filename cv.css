@@ -106,7 +106,19 @@ h2{font-size:1.25rem;line-height:1.35}
 h3{font-size:1.125rem;line-height:1.4}
 .badge,.btn{font-weight:500;letter-spacing:.02em}
 .btn-sm{min-height:2.75rem;font-size:.8rem}
+*,*::before,*::after{transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease}
+input,button,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+img,svg,video{display:block;max-width:100%}
+.svg-defs{position:absolute;width:0;height:0}
+[disabled],[aria-disabled="true"]{opacity:.5;cursor:not-allowed;pointer-events:none}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border)}
 
+/* ---- Atomic components used by CV ---- */
 .badge{display:inline-flex;align-items:center;justify-content:center;border-radius:0;padding:0 .625rem;height:1.25rem;font-size:.75rem;font-weight:600;border:1px solid transparent;background:transparent;color:var(--foreground)}
 .badge-outline{border-color:var(--border)}
 

@@ -210,7 +210,7 @@ body.drawer-open{overflow:hidden}
 .cv-timeline-role{font-size:1rem;font-weight:600;margin-bottom:.25rem}
 .cv-timeline-company{font-size:.85rem;color:var(--primary);margin-bottom:.75rem}
 .cv-timeline-desc{font-size:.85rem;color:var(--muted-foreground);line-height:1.6}
-.cv-projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.cv-projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
 .cv-project-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 150ms,box-shadow 150ms}
 .cv-project-card:hover{border-color:var(--ring);box-shadow:var(--shadow-md)}
 .cv-project-name{font-size:1rem;font-weight:600;margin-bottom:.5rem}

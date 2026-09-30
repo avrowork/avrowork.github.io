@@ -22,6 +22,7 @@ FONT = {
  'Ñ': ["01110","10001","11001","10101","10011","10001","10001"],
  'O': ["01110","10001","10001","10001","10001","10001","01110"],
  'Ó': ["00100","01110","10001","10001","10001","10001","01110"],
+ 'Í': ["00100","01110","11111","00100","00100","00100","11111"],
  'Á': ["00100","01110","10001","11111","10001","10001","10001"],
  'P': ["11110","10001","10001","11110","10000","10000","10000"],
  'R': ["11110","10001","10001","11110","10100","10010","10001"],
@@ -93,10 +94,12 @@ text("> _", 44, 44, 2, CYAN)
 # Contenido
 text("GARY AVENDAÑO ROSADO", 40, 88, 5, (250, 250, 250))
 text("REMOTE FULL-STACK DEVELOPER", 40, 150, 7, GREEN)
-text("TS · REACT · PYTHON · NODE", 40, 235, 4, MUTED)
-text("9+ AÑOS · 12+ SAAS · 5 PAÍSES", 40, 290, 4, MUTED)
-text("SDD · BDD · TDD", 40, 350, 3, CYAN)
-text("> 2019—2026 · SPEC-DRIVEN · TDD_", 40, 560, 3, DIM)
+text("SAAS MULTI-TENANT · B2B", 40, 240, 4, CYAN)
+text("TS · REACT · PYTHON · NODE", 40, 292, 4, MUTED)
+text("9+ AÑOS · 12+ SAAS · 5 PAÍSES", 40, 344, 4, MUTED)
+text("AI-ASSISTED · CLAUDE CODE · SDD · TDD", 40, 396, 3, CYAN)
+text("> ODONTOGEST · FACTUPRO · FARM-AGRO_", 40, 545, 3, DIM)
+text("DISPONIBLE · RELACIÓN DE DEPENDENCIA_", 40, 580, 3, GREEN)
 
 # PNG
 raw = b''.join(b'\x00' + b''.join(bytes(px[y][x]) for x in range(W)) for y in range(H))

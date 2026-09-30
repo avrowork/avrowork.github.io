@@ -256,7 +256,7 @@
             </article>
             <article class="cv-capability">
                 <h4>SaaS multi-tenant &amp; B2B</h4>
-                <p>Diseño y construyo productos <strong>SaaS multi-tenant</strong> orientados a B2B: aislamiento de datos por tenant, onboarding y administración de organizaciones, roles y permisos, planes y facturación. Llevé a producción <strong>2 SaaS multi-tenant</strong> (salud y automotriz) con clientes activos y cobros integrados vía Stripe y PayPal.</p>
+                <p>Diseño y construyo productos <strong>SaaS multi-tenant</strong> orientados a B2B: aislamiento de datos por tenant, onboarding y administración de organizaciones, roles y permisos, planes y facturación. Llevé a producción <strong>2 SaaS multi-tenant</strong> (salud y agroindustria) con clientes activos y cobros integrados vía Stripe y PayPal.</p>
             </article>
             <article class="cv-capability">
                 <h4>UI &amp; design systems</h4>
@@ -322,7 +322,7 @@
                     </p>
                     <ul class="cv-achievements">
                         <li>Desarrollé más de <strong>12 sistemas web</strong> de alto rendimiento, tomando decisiones de arquitectura y stack con criterio autónomo.</li>
-                        <li>Lideré la construcción de <strong>2 productos SaaS multi-tenant</strong> (clínicas odontológicas y lubricadoras), actualmente en producción con clientes activos y facturación integrada.</li>
+                        <li>Lideré la construcción de <strong>2 productos SaaS multi-tenant</strong> (clínicas odontológicas y granjas agrícolas), actualmente en producción con clientes activos y facturación integrada.</li>
                         <li>Establecí como estándar para el equipo el patrón de trabajo <strong>spec-driven con cobertura E2E mediante Playwright</strong>.</li>
                         <li>Diseñé y mantuve un <strong>design system propio</strong> basado en variables CSS con 4 temas (light, dark, brutalist, terminal), accesible y con soporte para animaciones.</li>
                     </ul>
@@ -500,16 +500,42 @@
                 <div class="cv-project-head">
                     <div class="cv-project-meta">
                         <span class="cv-project-role">Lead Full-Stack Developer</span>
+                        <span class="cv-project-year">2025 — Presente</span>
+                    </div>
+                    <span class="cv-project-status cv-project-status-live">En producción</span>
+                </div>
+                <h3 class="cv-project-name">FactuPro</h3>
+                <p class="cv-project-desc">ERP ligero de facturación electrónica para el SRI de Ecuador: los 6 comprobantes electrónicos, inventario con kardex, compras, reportes y ATS incluido, con API de primera clase y firma local (el .p12 nunca sale del equipo del cliente).</p>
+                <ul class="cv-project-bullets">
+                    <li>Multi-empresa: todos los RUC de un cliente en un solo acceso, con <strong>roles por empresa</strong>.</li>
+                    <li>Firma electrónica local: la llave se abre en el navegador, <strong>sin custodia de la .p12</strong>.</li>
+                    <li>API documentada desde rutas reales, con envelope uniforme e idempotencia para integrar ERP y e-commerce.</li>
+                </ul>
+                <div class="cv-project-footer">
+                    <div class="cv-project-stack">
+                        <span class="badge badge-outline">React</span>
+                        <span class="badge badge-outline">Node.js</span>
+                        <span class="badge badge-outline">PostgreSQL</span>
+                        <span class="badge badge-outline">SRI</span>
+                    </div>
+                    <a href="https://factuprox.app" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+                </div>
+            </article>
+
+            <article class="cv-project-card">
+                <div class="cv-project-head">
+                    <div class="cv-project-meta">
+                        <span class="cv-project-role">Lead Full-Stack Developer</span>
                         <span class="cv-project-year">2023 — Presente</span>
                     </div>
                     <span class="cv-project-status cv-project-status-live">En producción</span>
                 </div>
-                <h3 class="cv-project-name">HidroLube</h3>
-                <p class="cv-project-desc">Sistema administrativo para lubricadoras y lavadoras de vehículos. Cubre inventarios por sucursal, control de servicios, facturación y gestión de clientes, bajo un modelo multi-tenant.</p>
+                <h3 class="cv-project-name">Farm-Agro</h3>
+                <p class="cv-project-desc">Sistema de gestión para granjas agrícolas: control de producción, inventario y operación de cada unidad, bajo un modelo multi-tenant con panel independiente por granja.</p>
                 <ul class="cv-project-bullets">
-                    <li>Arquitectura multi-sucursal, con roles diferenciados para <strong>gerente y operador</strong>.</li>
-                    <li>Inventario en tiempo real con alertas automáticas de stock mínimo.</li>
-                    <li>Generación de reportes de margen por servicio y por sucursal.</li>
+                    <li>Arquitectura multi-tenant, con roles diferenciados para <strong>administrador y operador</strong>.</li>
+                    <li>Inventario y producción por unidad, con reportes de operación.</li>
+                    <li>Módulos parametrizados por tipo de granja y ciclo productivo.</li>
                 </ul>
                 <div class="cv-project-footer">
                     <div class="cv-project-stack">
@@ -518,7 +544,7 @@
                         <span class="badge badge-outline">React</span>
                         <span class="badge badge-outline">MySQL</span>
                     </div>
-                    <a href="https://hidrolube.inicio.top/" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+                    <a href="https://farm.inicio.top" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">Ver <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
                 </div>
             </article>
 
@@ -531,11 +557,11 @@
                     <span class="cv-project-status">Mantenimiento</span>
                 </div>
                 <h3 class="cv-project-name">Blog PIBG</h3>
-                <p class="cv-project-desc">Blog diario de la Primera Iglesia Bautista de Guayaquil (PIBG), con publicaciones devocionales, archivo histórico y panel editorial para el equipo de contenido.</p>
+                <p class="cv-project-desc">Sitio institucional y devocional diario de la Primera Iglesia Bautista de Guayaquil (PIBG): publicaciones “El Pan del Cielo”, historia, misión y vida de la congregación.</p>
                 <ul class="cv-project-bullets">
                     <li>Diseño de plantilla personalizada sobre WordPress, optimizada para legibilidad y accesibilidad.</li>
                     <li>Workflow editorial con roles definidos para redactor, editor y publicador.</li>
-                    <li>Archivo navegable por fecha, autor y serie devocional.</li>
+                    <li>Publicación devocional diaria sostenida por el equipo de contenido.</li>
                 </ul>
                 <div class="cv-project-footer">
                     <div class="cv-project-stack">

@@ -214,7 +214,7 @@ body.drawer-open{overflow:hidden}
 .cv-project-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 150ms,box-shadow 150ms}
 .cv-project-card:hover{border-color:var(--ring);box-shadow:var(--shadow-md)}
 .cv-project-name{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.cv-project-desc{font-size:.825rem;color:var(--muted-foreground);line-height:1.55;flex:1;margin-bottom:.75rem}
+.cv-project-desc{font-size:.825rem;color:var(--muted-foreground);line-height:1.55;flex:1;margin:0 1.25rem .75rem}
 .cv-project-footer{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
 .cv-contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
 .cv-contact-item{display:flex;align-items:center;gap:.75rem;padding:1rem;border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem;transition:border-color 150ms;min-height:2.75rem}

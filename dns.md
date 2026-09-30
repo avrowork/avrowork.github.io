@@ -1,9 +1,17 @@
-# DNS — `avro.work`
+# DNS — `avro.work` (PLAN NO EJECUTADO)
 
-Configura los registros de abajo en tu proveedor DNS
-(Namecheap, GoDaddy, Porkbun, Squarespace Domains, Hostinger, Hover, etc.)
-para que `avro.work` resuelva al sitio publicado en GitHub Pages
-(el archivo `CNAME` con `avro.work` ya está commiteado en este repo).
+> ⚠️ **AVISO IMPORTANTE:** este plan **no se ha aplicado**. El dominio
+> `avro.work` está en **Cloudflare** y sirve el sitio del consultorio
+> (independiente de este CV). No existe archivo `CNAME` en este repo.
+>
+> **No crees el `CNAME`** mientras el DNS siga en Cloudflare: GitHub Pages
+> activaría el dominio custom y `avrowork.github.io` empezaría a redirigir
+> (301) a `avro.work`, dejando el CV inaccesible en ambas URLs. Así ocurrió
+> el 30/09/2026 y hubo que revertirlo.
+>
+> Si algún día quieres migrar el dominio: primero mueve el DNS a las IPs de
+> GitHub Pages (registros de abajo), espera la propagación, y solo entonces
+> configura el dominio en Settings → Pages.
 
 > El certificado HTTPS lo emite GitHub Pages automáticamente con Let's Encrypt
 > en cuanto detecta el dominio en `Settings → Pages`. Suele tardar 5–15 min.

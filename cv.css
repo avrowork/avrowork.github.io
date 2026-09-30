@@ -753,11 +753,11 @@ body.drawer-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.cv-avatar-hero::before{animation:none}}
 
 /* ---- Unified accent across themes ---- */
-:root{--accent-color:#0e7490}
+:root{--accent-color:#0891b2}
 [data-theme=dark]{--accent-color:var(--glow-cyan)}
 [data-theme=terminal]{--accent-color:var(--glow-green)}
 [data-theme=brutalist]{--accent-color:#b45309}
-::selection{background:var(--accent-color);color:var(--background)}
+::selection{background:var(--accent-color);color:var(--primary-foreground)}
 
 /* ---- Scroll reveal ---- */
 @media(prefers-reduced-motion:no-preference){

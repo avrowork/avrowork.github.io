@@ -105,24 +105,7 @@ h1{font-size:1.5rem;line-height:1.3}
 h2{font-size:1.25rem;line-height:1.35}
 h3{font-size:1.125rem;line-height:1.4}
 .badge,.btn{font-weight:500;letter-spacing:.02em}
-.btn-sm{font-size:.8rem}
-*,*::before,*::after{transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease}
-input,button,textarea,select{font:inherit;color:inherit}
-button{cursor:pointer;background:none;border:none}
-ul,ol{list-style:none}
-a{color:inherit;text-decoration:none}
-img,svg,video{display:block;max-width:100%}
-[disabled],[aria-disabled="true"]{opacity:.5;cursor:not-allowed;pointer-events:none}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border)}
-
-/* ---- Atomic components used by CV ---- */
-.btn-outline,.btn-ghost{border:1px solid transparent;background:transparent;color:var(--foreground);min-height:2.75rem;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;font-size:.875rem;font-weight:500;border-radius:var(--radius);padding:0 .75rem;height:2.25rem;transition:all 150ms}
-.btn-outline{border-color:var(--input)}
-.btn-outline:hover{background:var(--accent);color:var(--accent-foreground)}
-.btn-ghost:hover{background:var(--accent);color:var(--accent-foreground)}
-.btn-sm{min-height:2.75rem}
+.btn-sm{min-height:2.75rem;font-size:.8rem}
 
 .badge{display:inline-flex;align-items:center;justify-content:center;border-radius:0;padding:0 .625rem;height:1.25rem;font-size:.75rem;font-weight:600;border:1px solid transparent;background:transparent;color:var(--foreground)}
 .badge-outline{border-color:var(--border)}
@@ -148,9 +131,10 @@ img,svg,video{display:block;max-width:100%}
 .cv-topbar-link.active{color:var(--foreground)}
 .cv-topbar-link.active .cv-topbar-slash{opacity:1;color:var(--primary)}
 .cv-topbar-actions{display:inline-flex;align-items:center;gap:.5rem;flex-shrink:0}
-.cv-topbar-status{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .625rem;border:1px solid var(--border);border-radius:999px;font-size:.7rem;color:var(--muted-foreground);font-weight:500;background:var(--background)}
-.cv-topbar-status-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:cursor-pulse 1.8s ease-out infinite}
-@keyframes cursor-pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+/* ---- Status pill (shared por topbar, drawer y hero) ---- */
+.cv-topbar-status,.cv-drawer-status,.cv-hero-status{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .625rem;border:1px solid var(--border);border-radius:999px;font-size:.7rem;color:var(--muted-foreground);font-weight:500;background:var(--background)}
+.cv-topbar-status-dot{width:7px;height:7px;border-radius:50%;background:var(--success);box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent);animation:cursor-pulse 1.8s ease-out infinite}
+@keyframes cursor-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .cv-topbar-theme,.cv-topbar-menu{display:inline-flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:1rem;transition:background 150ms,border-color 150ms,transform 150ms;border-radius:var(--radius)}
 .cv-topbar-theme:hover,.cv-topbar-menu:hover{background:var(--accent);border-color:var(--ring)}
 .cv-topbar-menu:focus-visible,.cv-topbar-theme:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
@@ -167,7 +151,7 @@ img,svg,video{display:block;max-width:100%}
 .cv-drawer-prompt{color:var(--primary);opacity:.75}
 .cv-drawer-brand{color:var(--foreground)}
 .cv-drawer-cursor{color:var(--primary);animation:cursor-blink 1s steps(2) infinite}
-.cv-drawer-status{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .625rem;border:1px solid var(--border);border-radius:999px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;font-size:.7rem;color:var(--muted-foreground)}
+.cv-drawer-status{margin-left:auto;font-family:'IBM Plex Mono',ui-monospace,monospace}
 .cv-drawer-nav{flex:1;min-height:0;overflow-y:auto;padding:.5rem 0;-webkit-overflow-scrolling:touch;padding-left:max(0,env(safe-area-inset-left));padding-right:max(0,env(safe-area-inset-right))}
 .cv-drawer-link{display:flex;align-items:baseline;gap:1rem;padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);font-size:1rem;color:var(--foreground);font-weight:500;min-height:3rem;transition:background 150ms}
 .cv-drawer-link:hover{background:var(--accent)}
@@ -210,12 +194,10 @@ body.drawer-open{overflow:hidden}
 .cv-timeline-role{font-size:1rem;font-weight:600;margin-bottom:.25rem}
 .cv-timeline-company{font-size:.85rem;color:var(--primary);margin-bottom:.75rem}
 .cv-timeline-desc{font-size:.85rem;color:var(--muted-foreground);line-height:1.6}
-.cv-projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.cv-projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .cv-project-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 150ms,box-shadow 150ms}
 .cv-project-card:hover{border-color:var(--ring);box-shadow:var(--shadow-md)}
-.cv-project-name{font-size:1rem;font-weight:600;margin-bottom:.5rem}
 .cv-project-desc{font-size:.825rem;color:var(--muted-foreground);line-height:1.55;flex:1;margin:0 1.25rem .75rem}
-.cv-project-footer{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
 .cv-contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
 .cv-contact-item{display:flex;align-items:center;gap:.75rem;padding:1rem;border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem;transition:border-color 150ms;min-height:2.75rem}
 .cv-contact-item:hover{border-color:var(--ring)}
@@ -245,7 +227,7 @@ body.drawer-open{overflow:hidden}
 .cv-section{padding:2rem 1.5rem}
 .cv-timeline-item{flex-direction:column;gap:.5rem}
 .cv-timeline-date{width:auto}
-.cv-projects-grid,.cv-skills-grid,.cv-contact-grid{grid-template-columns:1fr}
+.cv-projects-grid,.cv-contact-grid{grid-template-columns:1fr}
 .cv-footer{padding:1.5rem}
 .cv-hero-role{font-size:1rem;line-height:1.5}
 .cv-hero-name{font-size:1.6rem}
@@ -263,15 +245,6 @@ body.drawer-open{overflow:hidden}
 /* =====================================================
    CONTEXT & LAYOUT — richer CV sections
    ===================================================== */
-
-/* NOTE: `.cv-hero-status` / `.cv-hero-status-dot` removed.
-   `@keyframes cv-status-pulse` is still used below by `.cv-project-status-live::before`,
-   so it stays. */
-@keyframes cv-status-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
-  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-}
 
 /* ---- Hero meta list (icon-led 3 items) ---- */
 .cv-hero-meta {
@@ -510,7 +483,6 @@ body.drawer-open{overflow:hidden}
 }
 
 /* ---- Project head with role + year + status ---- */
-.cv-project-card { padding: 0; }
 .cv-project-head {
   display: flex;
   align-items: center;
@@ -549,16 +521,16 @@ body.drawer-open{overflow:hidden}
   white-space: nowrap;
 }
 .cv-project-status-live {
-  border-color: #22c55e;
-  color: #22c55e;
+  border-color: var(--success);
+  color: var(--success);
 }
 .cv-project-status-live::before {
   content: "";
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #22c55e;
-  animation: cv-status-pulse 1.8s ease-out infinite;
+  background: var(--success);
+  animation: cursor-pulse 1.8s ease-out infinite;
 }
 
 /* ---- Project body (with new headline / bullets) ---- */
@@ -673,6 +645,10 @@ body.drawer-open{overflow:hidden}
 }
 
 /* ---- Mobile overrides for the new sections ---- */
+@media (max-width: 1024px) {
+  .cv-projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
   .cv-hero-stats { grid-template-columns: repeat(2, 1fr); }
   .cv-stat { padding: 1.25rem 1.5rem; }
@@ -744,8 +720,8 @@ body.drawer-open{overflow:hidden}
    ===================================================== */
 
 /* ---- Hero redesign ---- */
-.cv-hero-status{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .75rem;border:1px solid var(--border);border-radius:999px;font-size:.72rem;font-weight:500;color:var(--muted-foreground);background:var(--card);margin-bottom:1.25rem;width:fit-content}
-.cv-hero-status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:cursor-pulse 1.8s ease-out infinite;flex-shrink:0}
+.cv-hero-status{gap:.5rem;padding:.35rem .75rem;font-size:.72rem;background:var(--card);margin-bottom:1.25rem;width:fit-content}
+.cv-hero-status-dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent);animation:cursor-pulse 1.8s ease-out infinite;flex-shrink:0}
 .cv-avatar-hero{position:relative;width:10rem;height:10rem;font-size:2.75rem;font-weight:700;color:var(--primary);background:var(--muted);display:flex;align-items:center;justify-content:center;letter-spacing:.04em}
 .cv-avatar-hero::before{content:"";position:absolute;inset:-6px;border:1px solid var(--primary);opacity:.35;animation:cv-ring 3.2s ease-in-out infinite}
 .cv-avatar-hero::after{content:"";position:absolute;inset:-12px;border:1px dashed var(--border)}

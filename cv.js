@@ -153,6 +153,25 @@ function initDrawer() {
   else if (mq.addListener) mq.addListener(syncOnResize);
 }
 
+/* === Scroll reveal (sections) === */
+function initReveal() {
+  var els = document.querySelectorAll('.cv-section, .cv-hero-stats');
+  if (!els.length) return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('cv-revealed'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('cv-revealed');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+}
+
 /* === Boot === */
 document.addEventListener('DOMContentLoaded', function () {
   initTypedHero();
@@ -160,5 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollSpy();
   initScrollProgress();
   initDrawer();
+  initReveal();
 });
 

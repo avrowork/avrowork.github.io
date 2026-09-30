@@ -1,5 +1,5 @@
-# https://avroec.github.io
+# https://avrowork.github.io
 User-agent: *
 Allow: /
 
-Sitemap: https://avroec.github.io/sitemap.xml
+Sitemap: https://avrowork.github.io/sitemap.xml

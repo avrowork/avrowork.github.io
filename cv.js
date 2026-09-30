@@ -22,7 +22,7 @@ function initTheme() {
     if (t === 'light') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', t);
     btn.innerHTML = icons[t] || icons.light;
-    btn.setAttribute('aria-label', 'Switch to ' + (order[t] || 'light') + ' theme');
+    btn.setAttribute('aria-label', 'Cambiar a tema ' + (order[t] || 'light'));
     const colors = { light: '#ffffff', dark: '#09090b', brutalist: '#fffff0', terminal: '#0c0c0c' };
     const c = colors[t] || colors.light;
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', c); });
@@ -41,7 +41,7 @@ function initTheme() {
 function initTypedHero() {
   const el = document.querySelector('[data-typed-hero]');
   if (!el) return;
-  const raw = el.getAttribute('data-typed');
+  const raw = el.getAttribute('data-typed-hero');
   if (!raw) return;
   const phrases = raw.split('|').map(function (s) { return s.trim(); }).filter(Boolean);
   if (phrases.length === 0) return;

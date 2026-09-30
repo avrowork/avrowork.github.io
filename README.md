@@ -5,6 +5,8 @@ Web Personal
 
 - [OdontoGest](https://odonto.inicio.top) — SaaS multi-tenant para clínicas odontológicas
 - [FactuPro](https://factuprox.app) — ERP de facturación electrónica para el SRI de Ecuador (Laravel · Inertia · React)
+- [Soluto Consulting](https://solutocg.com) — Sitio corporativo a medida de la consultora (HTML · CSS · jQuery)
+- [OrbimediaPlus](https://orbimedia.plus) — Catálogo WordPress multipropósito con 650+ plantillas (Elementor · WooCommerce)
 - [Farm-Agro](https://farm.inicio.top) — Gestión de granjas agrícolas, modelo multi-tenant
 - [Blog PIBG](https://pibguayaquil.com) — Sitio institucional y devocional diario de la P.I.B.G.
 

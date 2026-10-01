@@ -174,9 +174,11 @@ function initReveal() {
 
 /* === Download CV (print dialog → save as PDF) === */
 function initDownload() {
-  var btn = document.getElementById('downloadCV');
-  if (!btn) return;
-  btn.addEventListener('click', function () { window.print(); });
+  var btns = document.querySelectorAll('#downloadCV, #downloadCV2');
+  if (!btns.length) return;
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () { window.print(); });
+  });
 }
 
 /* === Boot === */

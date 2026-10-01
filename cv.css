@@ -587,6 +587,7 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   margin-bottom: 1.25rem;
 }
 .cv-contact-intro p { margin: 0; }
+.cv-btn-cv-inline{display:inline-flex;margin-top:1rem}
 
 /* ---- Contact info grid (label/value pairs) ---- */
 .cv-contact-info {
@@ -782,4 +783,18 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 }
 @media (min-width: 769px){
   .cv-btn-cv{display:inline-flex}
+}
+.cv-btn-cv-inline{display:none}
+
+/* ---- Print cover (portada del PDF) — invisible en pantalla ---- */
+.cv-print-cover{display:none}
+@media print{
+  .cv-btn-cv-inline{display:none!important}
+  .cv-print-cover{display:flex!important;height:100vh;align-items:center;break-after:page;page-break-after:always}
+  .cv-print-cover-prompt{font-size:.9rem;color:#111;margin:0 0 1.2rem}
+  .cv-print-cover-name{font-family:'Space Grotesk','IBM Plex Mono',ui-monospace,monospace;font-size:2rem;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;margin:0 0 .6rem;color:#111}
+  .cv-print-cover-role{font-size:1.05rem;color:#111;margin:0 0 .3rem}
+  .cv-print-cover-sub{font-size:.85rem;color:#555;margin:.2rem 0}
+  .cv-print-cover-contact{list-style:none;margin:1.6rem 0 0;padding:0;font-size:.85rem;color:#111}
+  .cv-print-cover-contact li{margin:.25rem 0}
 }

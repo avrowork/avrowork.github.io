@@ -316,6 +316,8 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   transition: border-color 150ms;
 }
 .cv-capability:hover { border-color: var(--ring); }
+.cv-capability h4 .cv-project-status{font-weight:500;margin-left:.5rem}
+.cv-capability .cv-project-stack{margin-top:.75rem}
 .cv-capability h4 {
   font-size: 0.95rem;
   font-weight: 600;
@@ -522,6 +524,7 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   background: var(--success);
   animation: cursor-pulse 1.8s ease-out infinite;
 }
+.cv-status-done{border-color:var(--success);color:var(--success)}
 
 /* ---- Project body (with new headline / bullets) ---- */
 .cv-project-name {

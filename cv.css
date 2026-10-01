@@ -26,6 +26,7 @@
   --input: #e4e4e7;
   --ring: #18181b;
   --success: #22c55e;
+  --success-text: #15803d;
   --warning: #f59e0b;
   --info: #3b82f6;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -36,6 +37,7 @@
   --glow-green: #00ff41;
 }
 [data-theme="dark"] {
+  --success-text: var(--success);
   --background: #09090b;
   --foreground: #fafafa;
   --card: #09090b;
@@ -79,6 +81,7 @@
   --shadow-md: 8px 8px 0 0 #111111;
 }
 [data-theme="terminal"] {
+  --success-text: var(--success);
   --background: #0c0c0c;
   --foreground: #00ff41;
   --card: #0c0c0c;
@@ -187,6 +190,7 @@ img,svg,video{display:block;max-width:100%}
 .cv-drawer-link.active .cv-drawer-arrow{color:var(--primary-text,var(--primary))}
 .cv-drawer-foot{padding:1rem 1.5rem;border-top:1px solid var(--border);text-align:center;padding-bottom:max(1rem,env(safe-area-inset-bottom))}
 .cv-drawer-hint{font-size:.7rem;color:var(--muted-foreground);opacity:.7}
+.cv-btn-drawer{width:100%;margin-bottom:.75rem}
 .cv-drawer-backdrop{position:fixed;inset:0;z-index:55;background:rgba(0,0,0,0);pointer-events:none;transition:background 200ms ease}
 .cv-drawer-backdrop[data-open=true]{pointer-events:auto;background:rgba(0,0,0,.35)}
 body.drawer-open{overflow:hidden}
@@ -523,7 +527,7 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 }
 .cv-project-status-live {
   border-color: var(--success);
-  color: var(--success);
+  color: var(--success-text, var(--success));
 }
 .cv-project-status-live::before {
   content: "";
@@ -533,7 +537,7 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   background: var(--success);
   animation: cursor-pulse 1.8s ease-out infinite;
 }
-.cv-status-done{border-color:var(--success);color:var(--success)}
+.cv-status-done{border-color:var(--success);color:var(--success-text,var(--success))}
 
 /* ---- Project body (with new headline / bullets) ---- */
 .cv-project-name {

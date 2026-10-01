@@ -174,7 +174,7 @@ function initReveal() {
 
 /* === Download CV (print dialog → save as PDF) === */
 function initDownload() {
-  var btns = document.querySelectorAll('#downloadCV, #downloadCV2');
+  var btns = document.querySelectorAll('#downloadCV, #downloadCV2, #downloadCV3');
   if (!btns.length) return;
   btns.forEach(function (btn) {
     btn.addEventListener('click', function () { window.print(); });

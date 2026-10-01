@@ -780,6 +780,19 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   .cv-hero-name{font-size:1.5rem}
   a{color:#111!important;text-decoration:none}
   .cv-footer{padding:1rem 0}
+  /* El papel (~720px útiles) dispara el layout móvil; en impresión
+     forzamos grillas compactas: 2–3 columnas según el contenido */
+  .cv-projects-grid{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  .cv-skills-grid{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  .cv-capabilities{grid-template-columns:repeat(2,1fr);gap:.75rem}
+  .cv-method-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
+  .cv-hero-stats{grid-template-columns:repeat(4,1fr);gap:.75rem}
+  .cv-project-bullets li{font-size:.75rem}
+  .cv-project-desc{font-size:.75rem;margin:0 .9rem .6rem}
+  .cv-project-name{margin:.85rem .9rem .4rem}
+  .cv-project-bullets{margin:.6rem .9rem}
+  .cv-project-head{padding:.7rem .9rem}
+  .cv-project-footer{padding:.75rem .9rem}
 }
 @media (min-width: 769px){
   .cv-btn-cv{display:inline-flex}

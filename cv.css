@@ -808,7 +808,7 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 @media print{
   .cv-btn-cv-inline{display:none!important}
   .cv-btn-cv{display:none!important}
-  .cv-print-cover{display:flex!important;height:100vh;align-items:center;break-after:page;page-break-after:always}
+  .cv-print-cover{display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;height:100vh;break-after:page;page-break-after:always}
   .cv-print-cover-prompt{font-size:.9rem;color:#111;margin:0 0 1.2rem}
   .cv-print-cover-name{font-family:'Space Grotesk','IBM Plex Mono',ui-monospace,monospace;font-size:2rem;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;margin:0 0 .6rem;color:#111}
   .cv-print-cover-role{font-size:1.05rem;color:#111;margin:0 0 .3rem}

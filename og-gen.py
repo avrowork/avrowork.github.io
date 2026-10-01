@@ -93,13 +93,13 @@ text("> _", 44, 44, 2, CYAN)
 
 # Contenido
 text("GARY AVENDAÑO ROSADO", 40, 88, 5, (250, 250, 250))
-text("REMOTE FULL-STACK DEVELOPER", 40, 150, 7, GREEN)
+text("FULL-STACK DEVELOPER", 40, 150, 7, GREEN)
 text("SAAS MULTI-TENANT · B2B", 40, 240, 4, CYAN)
 text("TS · REACT · PYTHON · NODE", 40, 292, 4, MUTED)
 text("9+ AÑOS · 12+ SAAS · 5 PAÍSES", 40, 344, 4, MUTED)
 text("AI-ASSISTED · CLAUDE CODE · SDD · TDD", 40, 396, 3, CYAN)
 text("> ODONTOGEST · FACTUPRO · FARM-AGRO_", 40, 545, 3, DIM)
-text("DISPONIBLE · RELACIÓN DE DEPENDENCIA_", 40, 580, 3, GREEN)
+text("> BAJO DEPENDENCIA · LEY ECUATORIANA_", 40, 580, 3, GREEN)
 
 # PNG
 raw = b''.join(b'\x00' + b''.join(bytes(px[y][x]) for x in range(W)) for y in range(H))

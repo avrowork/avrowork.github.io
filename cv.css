@@ -765,6 +765,11 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 }
 
 /* ---- Print (PDF) styles ---- */
+@page{
+  size: A4;
+  margin: 12mm 10mm;
+}
+
 @media print{
   /* Tokens forzados a modo lectura: el PDF sale bien desde cualquier tema */
   :root{--background:#fff;--foreground:#111;--card:#fff;--card-foreground:#111;--popover:#fff;--popover-foreground:#111;--primary:#111;--primary-foreground:#fff;--secondary:#f4f4f5;--secondary-foreground:#111;--muted:#f4f4f5;--muted-foreground:#555;--accent:#f4f4f5;--accent-foreground:#111;--border:#ddd;--input:#ddd;--ring:#111;--accent-color:#111}

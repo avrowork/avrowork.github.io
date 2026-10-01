@@ -149,7 +149,7 @@ img,svg,video{display:block;max-width:100%}
 .cv-topbar-status-dot{width:7px;height:7px;border-radius:50%;background:var(--success);box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent);animation:cursor-pulse 1.8s ease-out infinite}
 @keyframes cursor-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .cv-topbar-theme,.cv-topbar-menu{display:inline-flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:1rem;transition:background 150ms,border-color 150ms,transform 150ms;border-radius:var(--radius)}
-.cv-btn-cv{display:none}
+.cv-btn-cv{cursor:pointer}
 .cv-topbar-theme:hover,.cv-topbar-menu:hover{background:var(--accent);border-color:var(--ring)}
 .cv-topbar-menu:focus-visible,.cv-topbar-theme:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .cv-topbar-theme svg,.cv-topbar-menu svg{display:block}
@@ -802,12 +802,12 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 @media (min-width: 769px){
   .cv-btn-cv{display:inline-flex}
 }
-.cv-btn-cv-inline{display:none}
 
 /* ---- Print cover (portada del PDF) — invisible en pantalla ---- */
 .cv-print-cover{display:none}
 @media print{
   .cv-btn-cv-inline{display:none!important}
+  .cv-btn-cv{display:none!important}
   .cv-print-cover{display:flex!important;height:100vh;align-items:center;break-after:page;page-break-after:always}
   .cv-print-cover-prompt{font-size:.9rem;color:#111;margin:0 0 1.2rem}
   .cv-print-cover-name{font-family:'Space Grotesk','IBM Plex Mono',ui-monospace,monospace;font-size:2rem;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;margin:0 0 .6rem;color:#111}

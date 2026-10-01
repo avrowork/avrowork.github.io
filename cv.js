@@ -172,6 +172,13 @@ function initReveal() {
   els.forEach(function (el) { io.observe(el); });
 }
 
+/* === Download CV (print dialog → save as PDF) === */
+function initDownload() {
+  var btn = document.getElementById('downloadCV');
+  if (!btn) return;
+  btn.addEventListener('click', function () { window.print(); });
+}
+
 /* === Boot === */
 document.addEventListener('DOMContentLoaded', function () {
   initTypedHero();
@@ -180,5 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollProgress();
   initDrawer();
   initReveal();
+  initDownload();
 });
 

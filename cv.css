@@ -149,6 +149,7 @@ img,svg,video{display:block;max-width:100%}
 .cv-topbar-status-dot{width:7px;height:7px;border-radius:50%;background:var(--success);box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent);animation:cursor-pulse 1.8s ease-out infinite}
 @keyframes cursor-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--success) 60%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .cv-topbar-theme,.cv-topbar-menu{display:inline-flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:1rem;transition:background 150ms,border-color 150ms,transform 150ms;border-radius:var(--radius)}
+.cv-btn-cv{display:none}
 .cv-topbar-theme:hover,.cv-topbar-menu:hover{background:var(--accent);border-color:var(--ring)}
 .cv-topbar-menu:focus-visible,.cv-topbar-theme:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .cv-topbar-theme svg,.cv-topbar-menu svg{display:block}
@@ -764,13 +765,21 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
 
 /* ---- Print (PDF) styles ---- */
 @media print{
+  /* Tokens forzados a modo lectura: el PDF sale bien desde cualquier tema */
+  :root{--background:#fff;--foreground:#111;--card:#fff;--card-foreground:#111;--popover:#fff;--popover-foreground:#111;--primary:#111;--primary-foreground:#fff;--secondary:#f4f4f5;--secondary-foreground:#111;--muted:#f4f4f5;--muted-foreground:#555;--accent:#f4f4f5;--accent-foreground:#111;--border:#ddd;--input:#ddd;--ring:#111;--accent-color:#111}
+  [data-theme]{--glow-cyan:#111;--glow-green:#111}
+  [data-theme]{--primary-text:#111}
   body{background:#fff!important;color:#111!important}
   .cv-topbar,.cv-drawer,.cv-drawer-backdrop,#dot-grid,.cv-topbar-progress{display:none!important}
   .cv-hero{padding:1rem 0;border-bottom:1px solid #ddd;min-height:0!important}
   .cv-section{padding:1.25rem 0;border-bottom:1px solid #ddd;opacity:1!important;transform:none!important}
   .cv-hero-stats{break-inside:avoid}
-  .cv-project-card,.cv-timeline-item,.cv-capability,.cv-method{break-inside:avoid;box-shadow:none!important}
+  .cv-project-card,.cv-timeline-item,.cv-capability,.cv-method{break-inside:avoid;box-shadow:none!important;border-color:#ddd!important}
+  .cv-project-head{background:#f4f4f5!important}
   .cv-hero-name{font-size:1.5rem}
   a{color:#111!important;text-decoration:none}
   .cv-footer{padding:1rem 0}
+}
+@media (min-width: 769px){
+  .cv-btn-cv{display:inline-flex}
 }

@@ -62,7 +62,8 @@
             "https://github.com/garyavendanio",
             "https://linkedin.com/in/garyavendano",
             "https://www.behance.net/garyavendanio",
-            "https://www.instagram.com/avro.work"
+            "https://www.instagram.com/avro.work",
+            "https://avro.work"
           ],
           "knowsAbout": [
             "Desarrollo Full-Stack",
@@ -107,7 +108,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="cv.css">
+    <link rel="preload" href="cv.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="cv.css"></noscript>
     <script src="cv.js" defer></script>
 </head>
 <body>
@@ -182,7 +184,7 @@
         <a href="#contact" class="cv-drawer-link" data-num="07"><span class="cv-drawer-num">07</span><span class="cv-drawer-text">Contacto</span><span class="cv-drawer-arrow" aria-hidden="true"><svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></a>
     </nav>
     <div class="cv-drawer-foot">
-        <button class="btn btn-primary cv-btn-cv cv-btn-drawer" id="downloadCV3" type="button" aria-label="Descargar CV en PDF"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV (PDF)</span></button>
+        <button class="btn btn-primary cv-btn-cv cv-btn-drawer" id="downloadCV3" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV (PDF)</span></button>
         <span class="cv-drawer-hint">tap fuera para cerrar · Esc</span>
     </div>
 </div>
@@ -219,7 +221,7 @@
                     </li>
                 </ul>
             <div class="cv-hero-links">
-                <button class="btn btn-primary btn-sm cv-btn-cv" id="downloadCV" type="button" aria-label="Descargar CV en PDF"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV</span></button>
+                <button class="btn btn-primary btn-sm cv-btn-cv" id="downloadCV" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV</span></button>
                 <a href="mailto:avenros1@gmail.com" class="btn btn-outline btn-sm">Correo</a>
                 <a href="https://github.com/garyavendanio" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://linkedin.com/in/garyavendano" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -329,7 +331,7 @@
             <article class="cv-timeline-item">
                 <div class="cv-timeline-date">
                     <span class="cv-timeline-range">2019 — Presente</span>
-                    <span class="cv-timeline-len">~6 años</span>
+                    <span class="cv-timeline-len">~7 años</span>
                 </div>
                 <div class="cv-timeline-body">
                     <div class="cv-timeline-role">Desarrollador Full-Stack</div>
@@ -695,7 +697,7 @@
             <p>
                 <strong>En búsqueda de empleo full-time</strong> — disponible para integrarme como desarrollador full-stack en un equipo estable, <strong>bajo relación de dependencia y legislación ecuatoriana</strong>, en modalidad <strong>presencial (Guayaquil)</strong>. Foco en <strong>SaaS multi-tenant y productos B2B</strong>. Si su equipo busca un perfil full-stack con criterio de UI, será un placer conversar.
             </p>
-            <button class="btn btn-primary btn-sm cv-btn-cv-inline" id="downloadCV2" type="button" aria-label="Descargar CV en PDF"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV (PDF)</span></button>
+            <button class="btn btn-primary btn-sm cv-btn-cv-inline" id="downloadCV2" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Descargar CV (PDF)</span></button>
             <a class="cv-pdf-static" href="cv.pdf" target="_blank" rel="noopener noreferrer">o abre la versión PDF estática ↗</a>
         </div>
 
@@ -727,28 +729,28 @@
                     <span class="cv-contact-value">avenros1@gmail.com</span>
                 </span>
             </a>
-            <a href="https://github.com/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de GitHub de garyavendanio">
+            <a href="https://github.com/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="GitHub: github.com/garyavendanio (abre en nueva pestaña)">
                 <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19h8"/><path d="m4 17 6-6-6-6"/></svg></span>
                 <span class="cv-contact-text">
                     <span class="cv-contact-label">GitHub</span>
                     <span class="cv-contact-value">github.com/garyavendanio</span>
                 </span>
             </a>
-            <a href="https://linkedin.com/in/garyavendano" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de LinkedIn de garyavendano">
+            <a href="https://linkedin.com/in/garyavendano" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: linkedin.com/in/garyavendano (abre en nueva pestaña)">
                 <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
                 <span class="cv-contact-text">
                     <span class="cv-contact-label">LinkedIn</span>
                     <span class="cv-contact-value">linkedin.com/in/garyavendano</span>
                 </span>
             </a>
-            <a href="https://www.instagram.com/avro.work" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de Instagram de avro.work">
+            <a href="https://www.instagram.com/avro.work" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @avro.work (abre en nueva pestaña)">
                 <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></svg></span>
                 <span class="cv-contact-text">
                     <span class="cv-contact-label">Instagram</span>
                     <span class="cv-contact-value">@avro.work</span>
                 </span>
             </a>
-            <a href="https://www.behance.net/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de Behance de garyavendanio">
+            <a href="https://www.behance.net/garyavendanio" class="cv-contact-item" target="_blank" rel="noopener noreferrer" aria-label="Behance: garyavendanio (abre en nueva pestaña)">
                 <span class="cv-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.354V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.354"/><path d="M12 11H8v2h4a1 1 0 0 0 0-2z"/><path d="M12 9H8v2h4a1 1 0 0 0 0-2z"/><path d="M12 13H8v2h4a1 1 0 0 0 0-2z"/></svg></span>
                 <span class="cv-contact-text">
                     <span class="cv-contact-label">Behance</span>

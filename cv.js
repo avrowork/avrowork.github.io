@@ -188,7 +188,6 @@ function initIntroModal() {
   var closeBtn = document.getElementById('cvIntroClose');
   if (!modal || !backdrop) return;
 
-  var STORAGE = 'introSeen';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isOpen = false;
   var lastFocused = null;
@@ -197,8 +196,6 @@ function initIntroModal() {
   var hasAnchor = !!(location.hash && location.hash.length > 1);
   // Bypass: no mostrar en pantallas muy cortas (impresión, ventanas reducidas).
   var tooSmall = window.innerHeight < 480;
-  // Una vez por sesión (pestaña). Retry en la misma sesión si fue cerrado por resize.
-  var seen = (function () { try { return sessionStorage.getItem(STORAGE) === '1'; } catch (_) { return true; } })();
 
   function getFocusables() {
     return modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
@@ -213,18 +210,18 @@ function initIntroModal() {
       var target = closeBtn || getFocusables()[0];
       if (target) target.focus();
     } else {
-      try { sessionStorage.setItem(STORAGE, '1'); } catch (_) {}
       if (lastFocused && document.body.contains(lastFocused)) lastFocused.focus();
       lastFocused = null;
     }
   }
 
   // Apertura diferida: deja que el hero pinte primero (evita flash).
-  if (!seen && !hasAnchor && !tooSmall) {
+  // Se muestra en cada visita: sin persistencia entre sesiones ni recargas.
+  if (!hasAnchor && !tooSmall) {
     var delay = reduced ? 100 : 700;
     setTimeout(function () {
       // Re-chequear por si el usuario ya navegó o scrolleó antes del timeout.
-      if (!isOpen && !seen && !location.hash) setOpen(true);
+      if (!isOpen && !location.hash) setOpen(true);
     }, delay);
   }
 
@@ -258,9 +255,7 @@ function initIntroModal() {
 
   // Si la ventana era demasiado corta al cargar y luego crece, dar otra oportunidad.
   window.addEventListener('resize', function () {
-    if (!seen && !isOpen && !hasAnchor && window.innerHeight >= 480) {
-      try { if (sessionStorage.getItem(STORAGE) !== '1') setOpen(true); } catch (_) {}
-    }
+    if (!isOpen && !hasAnchor && window.innerHeight >= 480) setOpen(true);
   }, { once: true });
 }
 

@@ -181,6 +181,89 @@ function initDownload() {
   });
 }
 
+/* === Intro modal (servicios freelance) === */
+function initIntroModal() {
+  var modal = document.getElementById('cvIntroModal');
+  var backdrop = document.getElementById('cvIntroBackdrop');
+  var closeBtn = document.getElementById('cvIntroClose');
+  if (!modal || !backdrop) return;
+
+  var STORAGE = 'introSeen';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isOpen = false;
+  var lastFocused = null;
+
+  // Bypass: si el usuario llega con un ancla (ej. #contact), no interrumpir.
+  var hasAnchor = !!(location.hash && location.hash.length > 1);
+  // Bypass: no mostrar en pantallas muy cortas (impresión, ventanas reducidas).
+  var tooSmall = window.innerHeight < 480;
+  // Una vez por sesión (pestaña). Retry en la misma sesión si fue cerrado por resize.
+  var seen = (function () { try { return sessionStorage.getItem(STORAGE) === '1'; } catch (_) { return true; } })();
+
+  function getFocusables() {
+    return modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+  }
+  function setOpen(open) {
+    isOpen = open;
+    modal.setAttribute('data-open', open ? 'true' : 'false');
+    backdrop.setAttribute('data-open', open ? 'true' : 'false');
+    document.body.classList.toggle('modal-open', open);
+    if (open) {
+      lastFocused = document.activeElement;
+      var target = closeBtn || getFocusables()[0];
+      if (target) target.focus();
+    } else {
+      try { sessionStorage.setItem(STORAGE, '1'); } catch (_) {}
+      if (lastFocused && document.body.contains(lastFocused)) lastFocused.focus();
+      lastFocused = null;
+    }
+  }
+
+  // Apertura diferida: deja que el hero pinte primero (evita flash).
+  if (!seen && !hasAnchor && !tooSmall) {
+    var delay = reduced ? 100 : 700;
+    setTimeout(function () {
+      // Re-chequear por si el usuario ya navegó o scrolleó antes del timeout.
+      if (!isOpen && !seen && !location.hash) setOpen(true);
+    }, delay);
+  }
+
+  function requestClose() {
+    if (isOpen) setOpen(false);
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', requestClose);
+  backdrop.addEventListener('click', requestClose);
+  modal.querySelectorAll('[data-modal-close]').forEach(function (el) {
+    el.addEventListener('click', requestClose); // el ancla #contact navega igualmente
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!isOpen) return;
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      e.preventDefault();
+      requestClose();
+    } else if (e.key === 'Tab') {
+      // Focus trap dentro del modal
+      var f = Array.prototype.slice.call(getFocusables());
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  // Si la ventana era demasiado corta al cargar y luego crece, dar otra oportunidad.
+  window.addEventListener('resize', function () {
+    if (!seen && !isOpen && !hasAnchor && window.innerHeight >= 480) {
+      try { if (sessionStorage.getItem(STORAGE) !== '1') setOpen(true); } catch (_) {}
+    }
+  }, { once: true });
+}
+
 /* === Boot === */
 document.addEventListener('DOMContentLoaded', function () {
   initTypedHero();
@@ -190,5 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initDrawer();
   initReveal();
   initDownload();
+  initIntroModal();
 });
 

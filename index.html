@@ -191,6 +191,46 @@
 <!-- Backdrop for drawer focus + click-outside close -->
 <div class="cv-drawer-backdrop" id="cvDrawerBackdrop" aria-hidden="true"></div>
 
+<!-- ===== MODAL DE ENTRADA — Servicios freelance ===== -->
+<div class="cv-modal-backdrop" id="cvIntroBackdrop" aria-hidden="true"></div>
+<div class="cv-modal" id="cvIntroModal" role="dialog" aria-modal="true" aria-labelledby="cvIntroTitle" data-open="false">
+    <div class="cv-modal-inner">
+        <div class="cv-modal-head">
+            <span class="cv-modal-prompt" aria-hidden="true">&gt; _</span>
+            <button class="cv-modal-close" id="cvIntroClose" type="button" aria-label="Cerrar anuncio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <h2 class="cv-modal-title" id="cvIntroTitle">Sistemas freelance: de la <span class="cv-modal-title-accent">idea al despliegue</span></h2>
+        <p class="cv-modal-lead">
+            Especifico, orquesto y pongo en producción <strong>sistemas completos punta a punta</strong> —en <strong>cualquier stack tecnológico</strong>— con <strong>agentes de IA</strong> bajo disciplina <strong>spec-driven</strong>: de la ideación a producción con cobertura E2E, despliegue continuo y trazabilidad total.
+        </p>
+        <ul class="cv-modal-points">
+            <li>
+                <span class="cv-modal-num" aria-hidden="true">01</span>
+                <span><strong>Arquitectura &amp; especificación</strong> — contratos de API, criterios de aceptación y casos borde antes de escribir una línea de código.</span>
+            </li>
+            <li>
+                <span class="cv-modal-num" aria-hidden="true">02</span>
+                <span><strong>Desarrollo full-stack asistido por IA</strong> — agentes como Claude Code, Codex CLI, Antigravity y Qwen Code escriben el código; yo dirijo la arquitectura y valido cada entrega.</span>
+            </li>
+            <li>
+                <span class="cv-modal-num" aria-hidden="true">03</span>
+                <span><strong>Integración de LLMs &amp; RAG</strong> — OpenAI, Gemini, Ollama y prompt engineering, integrados únicamente donde generan valor real.</span>
+            </li>
+            <li>
+                <span class="cv-modal-num" aria-hidden="true">04</span>
+                <span><strong>Despliegue &amp; operación</strong> — Docker, CI/CD, observabilidad, migraciones idempotentes y soporte post-lanzamiento.</span>
+            </li>
+        </ul>
+        <div class="cv-modal-actions">
+            <a href="mailto:avenros1@gmail.com?subject=Proyecto%20freelance" class="btn btn-primary">Conversar por correo</a>
+            <a href="#contact" class="btn btn-outline" data-modal-close>Ver disponibilidad</a>
+        </div>
+        <p class="cv-modal-hint">Presiona <kbd>Esc</kbd> para cerrar este aviso</p>
+    </div>
+</div>
+
 <!-- ===== MAIN ===== -->
 <main class="cv-main">
 

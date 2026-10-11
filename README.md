@@ -18,3 +18,14 @@ python3 og-gen.py
 
 Genera la imagen social (1200×630, estilo terminal) sin dependencias externas.
 Edita `og-gen.py` para cambiar textos o colores.
+
+## Regenerar `cv.pdf`
+
+```bash
+./gen-pdf.sh
+```
+
+Imprime `index.html` con Chrome headless (estilos `@media print` de `cv.css`, A4,
+sin encabezados ni JavaScript) y sobrescribe el `cv.pdf` versionado en el repo.
+Se ejecuta cada vez que cambie `index.html` para que el PDF no se quede desactualizado.
+Si Chrome no está en el `PATH`: `CHROME=/ruta/a/chrome ./gen-pdf.sh`.

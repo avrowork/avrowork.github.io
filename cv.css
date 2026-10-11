@@ -799,7 +799,9 @@ a.cv-project-card:focus-visible{outline:2px solid var(--ring);outline-offset:2px
   .cv-timeline-item{padding:1rem 1.25rem}
   .cv-achievements li{font-size:.78rem}
   .cv-capability p{font-size:.8rem}
-  .cv-hero-stats{break-inside:avoid}
+  /* fuerza visibilidad: el reveal depende de IntersectionObserver y, al imprimir
+     antes de hacer scroll, el bloque de stats saldría con opacity:0 */
+  .cv-hero-stats{break-inside:avoid;opacity:1!important;transform:none!important}
   .cv-project-card,.cv-timeline-item,.cv-capability,.cv-method{break-inside:avoid;box-shadow:none!important;border-color:#ddd!important}
   .cv-project-head{background:#f4f4f5!important}
   .cv-hero-name{font-size:1.3rem}
